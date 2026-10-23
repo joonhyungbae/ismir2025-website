@@ -9,7 +9,7 @@
         <v-card-text class="text-body">
           Please be aware that by registering, you agree to abide by the
           <router-link
-            to="/code-of-conduct"
+            to="/attend-code-of-conduct"
             style="color: #1487c8; text-decoration: underline"
             >ISMIR 2025 Code of Conduct</router-link
           >. ISMIR 2025 will be a hybrid conference allowing all registrants to

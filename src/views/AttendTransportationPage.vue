@@ -17,7 +17,7 @@
                     
                     <v-row class="mb-4">
                       <v-col cols="12" md="6" class="pa-2">
-                        <v-card class="transport-option-card pa-4" elevation="2" @click="$router.push('/airport-to-daejeon')" style="cursor: pointer;">
+                        <v-card class="transport-option-card pa-4" elevation="2" @click="$router.push('/attend-airport-to-daejeon')" style="cursor: pointer;">
                           <v-card-title class="text-h5 mb-3 text-center">
                             <v-icon left color="#004191" size="32">mdi-airplane</v-icon>
                             Airport to/from Daejeon
@@ -35,7 +35,7 @@
                       </v-col>
                       
                       <v-col cols="12" md="6" class="pa-2">
-                        <v-card class="transport-option-card pa-4" elevation="2" @click="$router.push('/local-transportation')" style="cursor: pointer;">
+                        <v-card class="transport-option-card pa-4" elevation="2" @click="$router.push('/attend-local-transportation')" style="cursor: pointer;">
                           <v-card-title class="text-h5 mb-3 text-center">
                             <v-icon left color="#004191" size="32">mdi-bus</v-icon>
                             Local Transportation in Daejeon

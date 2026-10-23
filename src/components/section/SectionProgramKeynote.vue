@@ -205,35 +205,35 @@ export default {
 
 <style scoped>
 .dot-list {
-  list-style-type: disc; /* �۸Ӹ� ��ȣ ��Ÿ�� ���� */
+  list-style-type: disc;
   font-size: 18px;
-  padding-left: 40px; /* �鿩���� �� ���� */
+  padding-left: 40px;
   line-height: 1.8;
 }
 .text-body {
-  font-size: 18px; /* �ؽ�Ʈ ��Ʈ ũ�� ���� */
-  line-height: 1.6; /* �������� ���� �� ���� ���� */
-  white-space: normal; /* �ٹٲ��� ��� */
-  overflow-wrap: break-word; /* �ܾ ���� ���� �ʵ��� �ܾ� ������ �ٹٲ� */
+  font-size: 18px;
+  line-height: 1.6;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 .v-card-title {
-  white-space: normal; /* ���񿡼� �ٹٲ��� ��� */
-  overflow-wrap: break-word; /* �ܾ �߸��� �ʵ��� �ٹٲ� */
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* ȸ�� �� */
-  padding-bottom: 8px; /* �ٰ� ���� �� ���� */
+  border-bottom: 1px solid #d3d3d3;
+  padding-bottom: 8px;
 }
-/* Notion ��Ÿ���� �ڵ� ���� */
+/* Notion-style code block */
 .code-block {
-  background-color: #f5f5f5; /* ���� ȸ�� ��� */
-  border: 1px solid #e0e0e0; /* ���� �׵θ� */
-  border-radius: 4px; /* �𼭸��� �ձ۰� */
-  padding: 12px; /* ���� ���� */
-  font-family: "Noto Sans", sans-serif; /* Noto Sans ��Ʈ */
-  font-size: 14px; /* ������ ũ���� �ؽ�Ʈ */
-  overflow-x: auto; /* �� �ڵ忡 ��ũ�� �߰� */
-  white-space: pre-wrap; /* �ڵ� �� �ٲ� */
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 12px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  overflow-x: auto;
+  white-space: pre-wrap;
 }
 .highlight-text {
   color: #004191;

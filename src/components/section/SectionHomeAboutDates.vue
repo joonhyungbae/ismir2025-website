@@ -805,7 +805,7 @@ import neutoneLogo from "@/assets/logo/neutone.png"; // In progress
   justify-content: center;
   padding: 10px;
   box-sizing: border-box;
-  margin: 0; /* ���� ���� */
+  margin: 0;
 }
 
 .logo-image {
@@ -816,16 +816,16 @@ import neutoneLogo from "@/assets/logo/neutone.png"; // In progress
 }
 
 .text-body {
-  font-size: 18px; /* �ؽ�Ʈ ��Ʈ ũ�� ���� */
-  line-height: 1.6; /* �������� ���� �� ���� ���� */
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .table-row v-col {
-  font-size: 16px; /* ǥ�� �ؽ�Ʈ ��Ʈ ũ�� ���� */
+  font-size: 16px;
 }
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* ȸ�� �� */
-  padding-bottom: 8px; /* �ٰ� ���� �� ���� */
+  border-bottom: 1px solid #d3d3d3;
+  padding-bottom: 8px;
 }
 
 /* Modern Awards Section Styles */

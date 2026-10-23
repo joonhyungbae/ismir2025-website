@@ -1,6 +1,6 @@
 <template>
   <section id="hero" class="position-relative">
-    <!-- ������ ������ ���� -->
+    <!-- Title and dates overlaid on the cover -->
     <v-container class="fill-height px-4 py-12 position-absolute top-0 left-0">
       <v-responsive
         class="d-flex align-center mx-auto"
@@ -55,9 +55,9 @@
       </v-responsive>
     </v-container>
 
-    <!-- ���� ���� ������ �����̵� ������ -->
+    <!-- Full-height image slider -->
     <div class="custom-image-slider" :style="{ height: carouselHeight }">
-      <!-- �̹��� �����̳� -->
+      <!-- Image container -->
       <div class="image-container">
         <v-img
           v-for="(image, index) in images"
@@ -69,11 +69,11 @@
         >
         </v-img>
 
-        <!-- ������ �׷��� �׶���Ʈ �������� -->
+        <!-- Gradient overlay for text legibility -->
         <div class="gradient-overlay"></div>
       </div>
 
-      <!-- �׺���̼� ��ư -->
+      <!-- Navigation buttons -->
       <v-btn icon class="nav-btn prev-btn" @click="prevImage">
         <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
@@ -116,13 +116,13 @@ const images = [
   //{ src: s4 },
 ];
 
-// ���̸� �������� �����ϱ� ���� ����
-const carouselHeight = ref("65vh"); // �⺻ ���̸� '70vh'�� ����
+// Carousel height, kept in a ref so it can be adjusted
+const carouselHeight = ref("65vh");
 /*
-// vue-router ��� ����
+// Router instance
 const router = useRouter()
 
-// Important Dates �������� �̵��ϴ� �Լ�
+// Navigate to the Important Dates section
 const goToImportantDates = () => {
   router.push({ name: 'important-dates' }) // Navigate by route name
 }
@@ -139,11 +139,11 @@ const nextImage = () => {
   currentImageIndex.value = (currentImageIndex.value + 1) % images.length;
 };
 
-// �ڵ� ��ȯ ���
+// Automatic slide rotation
 let autoSlideInterval = null;
 
 const startAutoSlide = () => {
-  // ���� interval�� �ִٸ� ����
+  // Clear any existing interval
   if (autoSlideInterval) {
     clearInterval(autoSlideInterval);
   }
@@ -160,7 +160,7 @@ const stopAutoSlide = () => {
   }
 };
 
-// ������Ʈ ����Ʈ �� �ڵ� ��ȯ ����
+// Start automatic rotation when the component mounts
 onMounted(() => {
   startAutoSlide();
 });
@@ -184,7 +184,7 @@ onUnmounted(() => {
 .left-0 {
   left: 0;
 }
-/* �̹��� �����̴� ��Ÿ�ϸ� */
+/* Image slider styles */
 .custom-image-slider {
   position: relative;
   overflow: hidden;
@@ -210,7 +210,7 @@ onUnmounted(() => {
   opacity: 1;
 }
 
-/* �׶���Ʈ �������� ��Ÿ�ϸ� */
+/* Gradient overlay styles */
 .gradient-overlay {
   position: absolute;
   top: 0;
@@ -228,7 +228,7 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-/* �׺���̼� ��ư ��Ÿ�ϸ� */
+/* Navigation button styles */
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -250,13 +250,13 @@ onUnmounted(() => {
   right: 20px;
 }
 
-/* �ؽ�Ʈ �׸��� ȿ�� */
+/* Text shadow */
 .text-shadow-soft {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2),
     0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* �߰�: �����(<=600px)���� �׺���̼� ��ư ����� */
+/* Smaller navigation buttons on phones (<=600px) */
 @media (max-width: 600px) {
   .nav-btn {
     display: none !important;

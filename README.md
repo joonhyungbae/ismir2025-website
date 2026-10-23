@@ -8,13 +8,13 @@ This repository is a clean release of the final code, without the development hi
 
 ## Quick start
 
-Requirements: Node.js 18 or later and npm.
+Requirements: Node.js 18.12 or later and npm.
 
 ```bash
 npm install          # uses .npmrc (legacy-peer-deps) to match the lockfile
 npm run serve        # development server at http://localhost:8080
 npm run build        # production build in dist/
-npm run lint         # ESLint (Vue 3 + recommended rules)
+npm run lint -- --no-fix   # ESLint check (without --no-fix, lint rewrites files)
 ```
 
 No API keys or environment variables are needed.

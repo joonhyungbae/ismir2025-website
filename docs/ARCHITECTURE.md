@@ -36,12 +36,12 @@ src/
   services/icsService.js  Calendar export (.ics, Google, Outlook, Apple)
   plugins/vuetify.js      Vuetify setup (icon set)
   styles/variables.scss   Vuetify Sass settings (fonts, typography)
-  assets/                 Images (committee photos, covers, venue, sponsor logos)
+  assets/                 Images; sponsor logos in logo/, host and supporter logos in sponserLogos/ (the folder name is misspelled in the code)
 ```
 
 ## How a page is put together
 
-Each URL maps to a view in `src/views/`. A view contains almost nothing but sections:
+Each URL maps to a view in `src/views/`. Most views contain nothing but sections:
 
 ```vue
 <!-- src/views/CallForPapersPage.vue -->
@@ -55,7 +55,7 @@ Each URL maps to a view in `src/views/`. A view contains almost nothing but sect
 </template>
 ```
 
-- `SectionMenuCover` draws the banner at the top of every page except the home page: the page title, a breadcrumb trail (Home > Section > Page), and the cover image. It looks the current path up in its own `titleList`, so every new page needs an entry there.
+- `SectionMenuCover` draws the banner at the top of most pages: the page title, a breadcrumb trail (Home > Section > Page), and the cover image. It looks the current path up in its own `titleList`, so every new page needs an entry there. The `src` field of those entries is not used; every banner shows the one image imported at the top of the file (`@/assets/CoverImages/fhd/k1.webp`). Two pages (`AboutLogoPage.vue`, `DetailedSchedulePage.vue`) have no banner, and two (`DetailedSchedulePage.vue`, `AttendTransportationPage.vue`) keep their content in the view itself.
 - The page body is a `Section*` component in `src/components/section/`. Content (text, tables, links) is written directly in its template.
 - The home page uses `SectionHomeCover` (image carousel and title) and `SectionHomeAboutDates` (about text, important dates, awards).
 
@@ -123,4 +123,4 @@ Exports: `downloadICSFile` (one event), `downloadMergedICSFile` (whole program),
 
 ## Deep links on GitHub Pages
 
-GitHub Pages serves `404.html` for any path it does not know, such as `/program`. That file redirects to `/?p=/program`, and a script in `index.html` restores the original path with `history.replaceState` before the router starts. See [Deployment](DEPLOYMENT.md).
+GitHub Pages serves `404.html` for any path it does not know, such as `/program`. That file redirects to `/?p=/program`, and a script in `index.html` restores the original path with `history.replaceState` before the router starts. Only the path is passed on, so a deep link loses its query string and hash. The router has no catch-all route, so an unknown path shows an empty page between header and footer. See [Deployment](DEPLOYMENT.md).

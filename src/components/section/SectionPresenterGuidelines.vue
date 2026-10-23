@@ -352,7 +352,7 @@ export default {
   data() {
     return {
       stackedWave,
-      expandedPanels: [], // ���� Ȯ��� �г��� �����ϴ� �迭
+      expandedPanels: [],
       sections: [
         {
           items: [
@@ -400,7 +400,7 @@ export default {
   padding-bottom: 8px;
 }
 
-/* Notion ��Ÿ���� �ڵ� ���� */
+/* Notion-style code block */
 .code-block {
   background-color: #f5f5f5;
   border: 1px solid #e0e0e0;
