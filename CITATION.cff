@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you reuse this code, please cite it as below."
+title: "ISMIR 2025 Conference Website"
+authors:
+  - family-names: Bae
+    given-names: Joonhyung
+    affiliation: "KAIST"
+version: "1.0.0"
+date-released: "2026-10-24"
+license: MIT
+repository-code: "https://github.com/joonhyungbae/ismir2025-website"
+url: "https://ismir2025.ismir.net"
