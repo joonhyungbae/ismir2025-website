@@ -24,7 +24,7 @@
         <v-col class="text-center text-md-right" cols="12" md="6">
           <div>Copyright &copy; ISMIR 2025 Conference Organizing Committee</div>
           <div class="mt-2">
-            <!-- public 폴더에 있는 PDF이므로 /경로 로 참조 -->
+            <!-- The PDF lives in the public folder, so reference it by its / path -->
             <a
               href="/Terms & Conditions_ISMIR2025.pdf"
               download

@@ -155,7 +155,7 @@
           </v-card-title>
 
           <v-row align="start">
-            <!-- 이미지 (왼쪽) -->
+            <!-- Image (left) -->
             <v-col cols="12" md="5">
               <v-img
                 src="@/assets/KCultureNight/CulturalLearningActivities.png"
@@ -165,7 +165,7 @@
               ></v-img>
             </v-col>
 
-            <!-- 텍스트 콘텐츠 (오른쪽) -->
+            <!-- Text content (right) -->
             <v-col cols="12" md="7" class="d-flex flex-column">
               <v-card-title class="activity-type mb-2">
                 Interactive Cultural Experience
@@ -212,7 +212,7 @@
           </v-card-title>
 
           <v-row align="start">
-            <!-- 이미지 (왼쪽) -->
+            <!-- Image (left) -->
             <v-col cols="12" md="5">
               <v-img
                 src="@/assets/KCultureNight/KoreaTraditionalTavern.png"
@@ -222,7 +222,7 @@
               ></v-img>
             </v-col>
 
-            <!-- 텍스트 콘텐츠 (오른쪽) -->
+            <!-- Text content (right) -->
             <v-col cols="12" md="7" class="d-flex flex-column">
               <v-card-title class="activity-type mb-2">
                 Authentic Korean Cuisine Experience
@@ -306,7 +306,7 @@ export default {
     scrollToSection(sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
-        const offset = 100; // 상단에서 100px 아래로 스크롤
+        const offset = 100; // Scroll to 100px below the top
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -321,7 +321,7 @@ export default {
 </script>
 
 <style scoped>
-/* 한국 전통 테마 - 메인 카드 스타일 */
+/* Traditional Korean theme - main card style */
 .intro-card {
   background: linear-gradient(135deg, #f4ecdc 0%, #e0d5c1 100%);
   border-radius: 16px;
@@ -355,7 +355,7 @@ export default {
   background: linear-gradient(90deg, #8b4513, #cd853f, #d2b48c, #deb887);
 }
 
-/* 텍스트 스타일 개선 */
+/* Text style refinements */
 .intro-text {
   font-size: 18px;
   line-height: 1.7;
@@ -448,31 +448,31 @@ export default {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
 
-/* 가로형 이미지 (1440*792) - Korean Folk Games */
+/* Landscape image (1440*792) - Korean Folk Games */
 .horizontal-image {
   width: 100%;
   max-height: 500px;
 }
 
-/* 한국 전통악기 이미지 - 큰 사이즈 */
+/* Traditional Korean instruments image - large size */
 .traditional-instruments-large {
   width: 100%;
   max-height: 700px;
 }
 
-/* 세로형 정사각형에 가까운 이미지 (1080*1152) - Traditional Tavern */
+/* Near-square portrait image (1080*1152) - Traditional Tavern */
 .tavern-image {
   width: 100%;
   max-height: 600px;
 }
 
-/* 세로형 이미지 (720*1152) - Cultural Learning Activities */
+/* Portrait image (720*1152) - Cultural Learning Activities */
 .square-vertical-image {
   width: 100%;
   max-height: 650px;
 }
 
-/* 좁은 세로형 이미지 (360*1080) - Traditional Instruments */
+/* Narrow portrait image (360*1080) - Traditional Instruments */
 .narrow-vertical-image {
   width: 100%;
   max-height: 700px;
@@ -776,7 +776,7 @@ export default {
   padding: 8px 0;
 }
 
-/* Experience Highlights Styles - 한국 전통 테마 */
+/* Experience Highlights Styles - traditional Korean theme */
 .experience-highlights {
   background: linear-gradient(
     135deg,
@@ -897,7 +897,7 @@ export default {
   letter-spacing: 0.2px;
 }
 
-/* 추가 시각적 개선 요소들 */
+/* Additional visual enhancements */
 .v-divider {
   margin: 40px 0 !important;
   background: linear-gradient(
@@ -910,20 +910,20 @@ export default {
   border-radius: 1px;
 }
 
-/* 스크롤 애니메이션을 위한 기본 스타일 */
+/* Base styles for scroll animations */
 .activity-section {
   opacity: 1;
   transform: translateY(0);
   transition: all 0.6s ease;
 }
 
-/* 강조된 텍스트 스타일 */
+/* Emphasized text style */
 strong {
   color: #8b4513;
   font-weight: 600;
 }
 
-/* 한국 전통 색상 팔레트 - 따뜻한 그라데이션 */
+/* Traditional Korean color palette - warm gradient */
 .tag-blue {
   background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
 }

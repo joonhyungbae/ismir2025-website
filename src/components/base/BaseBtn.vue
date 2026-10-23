@@ -39,6 +39,6 @@ import { defineProps } from 'vue';
 </script>
 <style scoped>
 .no-opacity {
-  opacity: 1 !important; /* 투명도를 강제로 1로 설정 */
+  opacity: 1 !important; /* Force opacity to 1 */
 }
 </style>

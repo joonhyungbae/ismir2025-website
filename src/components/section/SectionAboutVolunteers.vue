@@ -314,7 +314,7 @@ export default {
         {
           name: "Taein Song",
           bio: "I'm currently doing a Master's degree at KAIST. I'm particularly interested in the musical experiences of DHH populations, especially cochlear implant users.",
-          url: "https://www.mubl.kaist.ac.kr/복제-hjk-cv",
+          url: "https://www.mubl.kaist.ac.kr/%EB%B3%B5%EC%A0%9C-hjk-cv",
         },
         {
           name: "Mirinae Lee",
@@ -555,7 +555,7 @@ export default {
   padding-right: 8px;
 }
 
-/* 스크롤바 스타일링 */
+/* Scrollbar styling */
 .volunteer-bio p::-webkit-scrollbar {
   width: 4px;
 }
@@ -668,7 +668,7 @@ export default {
   padding-right: 6px;
 }
 
-/* Local Volunteer 스크롤바 스타일링 */
+/* Local Volunteer scrollbar styling */
 .local-volunteer-bio p::-webkit-scrollbar {
   width: 3px;
 }

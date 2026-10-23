@@ -33,7 +33,7 @@
         <v-container fluid class="pa-0">
           <v-row>
             <v-col cols="12">
-              <!-- 로딩 상태 -->
+              <!-- Loading state -->
               <div v-if="loading" class="text-center pa-8">
                 <v-progress-circular
                   indeterminate
@@ -43,7 +43,7 @@
                 <div class="mt-4 text-h6">Loading program data...</div>
               </div>
 
-              <!-- 에러 상태 -->
+              <!-- Error state -->
               <div v-else-if="error" class="text-center pa-8">
                 <v-alert type="error" prominent class="ma-4">
                   <div class="text-h6">Unable to load data</div>
@@ -54,12 +54,12 @@
                 </v-alert>
               </div>
 
-              <!-- 일일 프로그램 스케줄 테이블 -->
+              <!-- Daily program schedule table -->
               <div
                 v-else-if="tableData.headers && tableData.rows"
                 class="sheets-container"
               >
-                <!-- 모바일 스크롤 안내 메시지 -->
+                <!-- Mobile scroll hint message -->
                 <v-alert
                   v-if="$vuetify.display.mobile"
                   type="info"
@@ -73,7 +73,7 @@
                   </div>
                 </v-alert>
 
-                <!-- Venue Legend (표 위에 배치) -->
+                <!-- Venue Legend (placed above the table) -->
                 <div class="venue-legend-top" v-if="!$vuetify.display.mobile">
                   <v-card class="legend-card" elevation="2">
                     <v-card-title class="legend-title">
@@ -107,12 +107,12 @@
                   </v-card>
                 </div>
 
-                <!-- 메인 테이블 -->
+                <!-- Main table -->
                 <div class="table-container">
                   <table class="program-table" :style="getColumnStyle()">
-                    <!-- 3단계 헤더 -->
+                    <!-- Multi-row header -->
                     <thead>
-                      <!-- 첫 번째 행: 날짜 -->
+                      <!-- First row: date -->
                       <tr class="date-row">
                         <th rowspan="4" class="time-header"></th>
                         <th class="date-cell">9/20</th>
@@ -124,7 +124,7 @@
                         <th class="date-cell" colspan="2">9/26</th>
                       </tr>
 
-                      <!-- 두 번째 행: 요일 -->
+                      <!-- Second row: day of week -->
                       <tr class="day-row">
                         <th class="day-cell">Sat</th>
                         <th class="day-cell">Sun</th>
@@ -135,7 +135,7 @@
                         <th class="day-cell" colspan="2">Fri</th>
                       </tr>
 
-                      <!-- 세 번째 행: 이벤트 타입 -->
+                      <!-- Third row: event type -->
                       <tr class="event-type-row">
                         <th class="event-type-cell satellite">Satellite</th>
                         <th class="event-type-cell tutorial">Tutorial</th>
@@ -147,7 +147,7 @@
                         </th>
                       </tr>
 
-                      <!-- 네 번째 행: 장소 -->
+                      <!-- Fourth row: venue -->
                       <tr class="venue-row">
                         <th colspan="7" class="venue-cell main-venue">KAIST</th>
                         <th class="venue-cell sogang-venue">
@@ -156,7 +156,7 @@
                       </tr>
                     </thead>
 
-                    <!-- 테이블 바디 -->
+                    <!-- Table body -->
                     <tbody>
                       <tr
                         v-for="(row, rowIndex) in getProcessedRows()"
@@ -164,12 +164,12 @@
                         class="time-row"
                         :class="getTimeRowClass()"
                       >
-                        <!-- 시간 컬럼 -->
+                        <!-- Time column -->
                         <td class="time-cell" :class="getTimeClass()">
                           {{ row.originalRow[0] || "" }}
                         </td>
 
-                        <!-- 세션 컬럼들 -->
+                        <!-- Session columns -->
                         <td
                           v-for="(cell, cellIndex) in row.cells"
                           :key="cellIndex"
@@ -205,7 +205,7 @@
                   </table>
                 </div>
 
-                <!-- 캘린더 선택 메뉴 -->
+                <!-- Calendar selection menu -->
                 <div
                   v-if="calendarMenuOpen"
                   class="calendar-menu-overlay"
@@ -253,11 +253,11 @@
                 </div>
               </div>
 
-              <!-- 데이터 없음 -->
+              <!-- No data -->
               <div v-else class="text-center pa-8">
                 <v-alert type="info" prominent class="ma-4">
                   <div class="text-h6">
-                    프로그램 데이터를 불러오는 중입니다...
+                    Loading the program...
                   </div>
                 </v-alert>
               </div>
@@ -281,8 +281,8 @@ import {
   generateAppleCalendarUrl,
 } from "../../services/icsService";
 
-// ISMIR 2025 프로그램 스케줄 데이터 - CSV 파일 내용 완전 하드코딩
-// 장소 정보 Legend 매핑
+// ISMIR 2025 program schedule data - CSV file contents fully hardcoded
+// Venue legend mapping
 const VENUE_LEGEND = {
   1: {
     symbol: "¹",
@@ -327,9 +327,9 @@ const VENUE_LEGEND = {
   },
 };
 
-// 원본 program.csv의 모든 데이터를 JavaScript 배열로 변환
+// All data from the original program.csv converted into a JavaScript array
 const hardcodedProgramData = [
-  // 헤더 정보 (행 0-3)
+  // Header info (rows 0-3)
   ["", "9/20", "9/21", "9/22", "9/23", "9/24", "9/25", "9/26"],
   ["", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
   [
@@ -354,7 +354,7 @@ const hardcodedProgramData = [
     "@Sogang Univ., Seoul",
   ],
 
-  // 실제 스케줄 데이터 (행 4-79)
+  // Actual schedule data (rows 4-79)
   ["07:00 - 07:30", "", "Registration⁴", "Registration⁵", "", "", "", ""],
   ["07:30 - 08:00", "", "", "", "", "", "", ""],
   [
@@ -505,20 +505,20 @@ const hardcodedProgramData = [
   ["21:30 - 22:00", "", "", "", "", "End", "", "", ""],
 ];
 
-// 반응형 데이터
+// Reactive data
 const loading = ref(false);
 const error = ref(null);
 const sheetData = ref([]);
 const mergedCellsInfo = ref({});
 const downloadingAll = ref(false);
 
-// 캘린더 메뉴 관련 데이터
+// Calendar menu data
 const calendarMenuOpen = ref(false);
 const selectedEventData = ref(null);
 const availableCalendars = ref(getAvailableCalendarOptions());
 const menuPosition = ref({ x: 0, y: 0 });
 
-// 테이블 데이터 계산
+// Compute table data
 const tableData = computed(() => {
   if (!sheetData.value || sheetData.value.length === 0) {
     return { headers: [], rows: [] };
@@ -526,14 +526,14 @@ const tableData = computed(() => {
 
   const formattedData = formatDataAsTable(sheetData.value);
 
-  // 8:30부터 22:00까지만 필터링 (Welcome Reception, Banquet 포함)
+  // Filter to 8:30-22:00 only (includes Welcome Reception and Banquet)
   if (formattedData.rows && formattedData.rows.length > 0) {
     const filteredRows = formattedData.rows.filter((row) => {
       if (!row || !row[0]) return false;
 
       const time = row[0].toString().trim();
 
-      // 시간 형식 확인 (예: "07:00 - 07:30", "09:00 - 09:30" 등)
+      // Check the time format (e.g. "07:00 - 07:30", "09:00 - 09:30")
       const timeMatch = time.match(
         /^(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})$/
       );
@@ -542,7 +542,7 @@ const tableData = computed(() => {
       const hours = parseInt(timeMatch[1]);
       const minutes = parseInt(timeMatch[2]);
 
-      // 7:00 (7시간 0분)부터 22:00 (22시간 0분)까지
+      // From 7:00 (7h 0m) to 22:00 (22h 0m)
       const totalMinutes = hours * 60 + minutes;
       const startMinutes = 7 * 60; // 7:00
       const endMinutes = 22 * 60; // 22:00
@@ -559,7 +559,7 @@ const tableData = computed(() => {
   return formattedData;
 });
 
-// Vuetify DataTable 헤더 형식으로 변환 (현재 사용하지 않음)
+// Convert to Vuetify DataTable header format (currently unused)
 // const tableHeaders = computed(() => {
 //   if (!tableData.value.headers) return [];
 //
@@ -571,12 +571,12 @@ const tableData = computed(() => {
 //   }));
 // });
 
-// 고정된 컬럼 수 (9/20~9/25: 6개 + 9/26: 2개 = 총 8개)
+// Fixed column count (9/20-9/25: 6 + 9/26: 2 = 8 total)
 const getColumnCount = computed(() => {
-  return 8; // 고정된 8개 컬럼
+  return 8; // Fixed 8 columns
 });
 
-// 동적 컬럼 너비 스타일
+// Dynamic column width style
 const getColumnStyle = () => {
   const columnCount = getColumnCount.value;
   const sessionColumnWidth = `calc((100% - 120px) / ${columnCount})`;
@@ -585,26 +585,26 @@ const getColumnStyle = () => {
   };
 };
 
-// 시간 행 스타일 클래스 결정 - 모든 시간이 동일한 스타일
+// Determine the time row style class - all times share the same style
 const getTimeRowClass = () => {
-  return ""; // 특별한 클래스 없음
+  return ""; // No special class
 };
 
-// 시간 스타일 클래스 결정 - 모든 시간이 동일한 스타일
+// Determine the time style class - all times share the same style
 const getTimeClass = () => {
-  return ""; // 특별한 클래스 없음
+  return ""; // No special class
 };
 
-// 세션 스타일 클래스 결정 - 하늘색 통일 적용
+// Determine the session style class - sky blue applied uniformly
 const getSessionClass = (session) => {
   const classes = [];
 
   if (session && typeof session === "string") {
-    // 줄바꿈 문자를 공백으로 정규화하고 윗첨자 제거
+    // Normalize line breaks to spaces and strip superscripts
     const normalizedSession = session
       .replace(/\n/g, " ")
       .replace(/\s+/g, " ")
-      .replace(/[¹²³⁴⁵⁶⁷⁸⁹⁰]/g, "") // 윗첨자 제거
+      .replace(/[¹²³⁴⁵⁶⁷⁸⁹⁰]/g, "") // Strip superscripts
       .toLowerCase()
       .trim();
 
@@ -612,53 +612,53 @@ const getSessionClass = (session) => {
       `SESSION CLASSIFICATION: "${session}" → "${normalizedSession}"`
     );
 
-    // 1. Registration - 연한 초록색
+    // 1. Registration - light green
     if (normalizedSession.includes("registration")) {
       classes.push("registration-session");
     }
-    // 2. Tutorial, Oral Session, Keynote - 하늘색
+    // 2. Tutorial, Oral Session, Keynote - sky blue
     else if (
       normalizedSession.includes("tutorial") ||
       normalizedSession.includes("keynote") ||
       normalizedSession.includes("oral session")
     ) {
-      classes.push("keynote-session"); // 하늘색 클래스 사용
+      classes.push("keynote-session"); // Use the sky blue class
     }
-    // 2. Opening (개회식) - 베이지 (Lunch와 동일)
+    // 2. Opening - beige (same as Lunch)
     else if (normalizedSession.includes("opening")) {
       classes.push("lunch-session");
     }
-    // 3. Poster Session (포스터) - 라벤더
+    // 3. Poster Session - lavender
     else if (normalizedSession.includes("poster session")) {
       classes.push("poster-session");
     }
-    // 4. Industry Session (산업계) - 연초록, Industry Meetup은 베이지 (Lunch와 동일)
+    // 4. Industry Session - light green; Industry Meetup is beige (same as Lunch)
     else if (normalizedSession.includes("industry")) {
       if (normalizedSession.includes("meetup")) {
-        classes.push("lunch-session"); // Industry Meetup은 Lunch와 같은 색
+        classes.push("lunch-session"); // Industry Meetup uses the same color as Lunch
       } else {
-        classes.push("industry-session"); // 일반 Industry Session은 연초록
+        classes.push("industry-session"); // Regular Industry Session is light green
       }
     }
-    // 5. Lunch (점심) - 베이지
+    // 5. Lunch - beige
     else if (normalizedSession.includes("lunch")) {
       classes.push("lunch-session");
     }
-    // 6. Coffee (커피만) - 연갈색
+    // 6. Coffee (coffee only) - light brown
     else if (
       normalizedSession.includes("coffee") &&
       !normalizedSession.includes("poster")
     ) {
       classes.push("Coffee-session");
     }
-    // 7. Coffee + Poster (커피 + 포스터) - 라벤더 (포스터와 통일)
+    // 7. Coffee + Poster - lavender (matches Poster)
     else if (
       normalizedSession.includes("coffee") &&
       normalizedSession.includes("poster")
     ) {
       classes.push("poster-session");
     }
-    // 8. Social Events (사교행사) - 코랄 핑크
+    // 8. Social Events - coral pink
     else if (
       normalizedSession.includes("welcome") ||
       normalizedSession.includes("reception") ||
@@ -676,7 +676,7 @@ const getSessionClass = (session) => {
     ) {
       classes.push("social-session");
     }
-    // 9. Closing/Award/Society meeting (폐회식/시상식/학회 모임) - 연초록
+    // 9. Closing/Award/Society meeting - light green
     else if (
       normalizedSession.includes("closing") ||
       normalizedSession.includes("award") ||
@@ -684,7 +684,7 @@ const getSessionClass = (session) => {
     ) {
       classes.push("ceremony-session");
     }
-    // 10. Special Events (특별 이벤트) - 민트
+    // 10. Special Events - mint
     else if (
       normalizedSession.includes("llm4ma") ||
       normalizedSession.includes("dlfm") ||
@@ -692,39 +692,39 @@ const getSessionClass = (session) => {
     ) {
       classes.push("special-event-session");
     }
-    // 11. WIMIR/Diversity - 퍼플
+    // 11. WIMIR/Diversity - purple
     else if (
       normalizedSession.includes("wimir") ||
       normalizedSession.includes("special session")
     ) {
       classes.push("diversity-session");
     }
-    // 12. Late-Breaking/Demo - 라벤더 (Poster Session과 동일)
+    // 12. Late-Breaking/Demo - lavender (same as Poster Session)
     else if (
       normalizedSession.includes("late-breaking") ||
       normalizedSession.includes("demo")
     ) {
       classes.push("poster-session");
     }
-    // 13. Unconference - 특별 이벤트 (민트)
+    // 13. Unconference - special event (mint)
     else if (normalizedSession.includes("unconference")) {
       classes.push("special-event-session");
     }
-    // 기본값은 세션 컬럼 스타일 유지
+    // Default: keep the session column style
   }
 
   return classes.join(" ");
 };
 
-// 하드코딩된 데이터 구조 분석 (간단한 버전)
+// Analyze the hardcoded data structure (simple version)
 // eslint-disable-next-line no-unused-vars
 const analyzeDataStructure = () => {
-  console.log("=== 하드코딩된 데이터 분석 ===");
-  console.log("하드코딩된 데이터에서는 병합 분석을 생략합니다.");
+  console.log("=== Hardcoded data analysis ===");
+  console.log("Skipping merge analysis for hardcoded data.");
   console.log("=== END ANALYSIS ===");
 };
 
-// CSV 데이터의 세로 방향 블록을 인식하여 rowspan 계산
+// Detect vertical blocks in the CSV data and compute rowspan
 // eslint-disable-next-line no-unused-vars
 const getSessionInfo = (cellValue, currentRowIndex, currentColIndex) => {
   if (!cellValue || typeof cellValue !== "string") {
@@ -736,9 +736,9 @@ const getSessionInfo = (cellValue, currentRowIndex, currentColIndex) => {
     return { rowspan: 1, isSpanned: false, sessionType: "" };
   }
 
-  // 현재 컬럼에서 다음 "End" 또는 다른 이벤트까지의 rowspan 계산
+  // Compute rowspan in the current column up to the next "End" or a different event
   const allRows = tableData.value.rows;
-  const actualColIndex = currentColIndex + 1; // 시간 컬럼 제외
+  const actualColIndex = currentColIndex + 1; // Skip the time column
 
   let rowspan = 1;
   for (let i = currentRowIndex + 1; i < allRows.length; i++) {
@@ -748,20 +748,20 @@ const getSessionInfo = (cellValue, currentRowIndex, currentColIndex) => {
         : "";
 
     if (nextCell === "" || nextCell === trimmedValue) {
-      // 빈 셀이거나 같은 이벤트이면 계속 확장
+      // Keep extending through empty cells or the same event
       rowspan++;
     } else if (nextCell.toLowerCase() === "end") {
-      // "End"를 만나면 해당 행까지 포함하고 종료
+      // On "End", include that row and stop
       rowspan++;
       break;
     } else {
-      // 다른 이벤트를 만나면 이전 행까지만
+      // On a different event, stop at the previous row
       break;
     }
   }
 
   console.log(
-    `ROWSPAN 계산: "${trimmedValue}" | Row ${currentRowIndex}, Col ${actualColIndex} | Rowspan: ${rowspan}`
+    `ROWSPAN calc: "${trimmedValue}" | Row ${currentRowIndex}, Col ${actualColIndex} | Rowspan: ${rowspan}`
   );
 
   return {
@@ -771,21 +771,21 @@ const getSessionInfo = (cellValue, currentRowIndex, currentColIndex) => {
   };
 };
 
-// 하드코딩된 데이터에서는 간단한 rowspan 계산
+// Simple rowspan calculation for hardcoded data
 // eslint-disable-next-line no-unused-vars
 const calculateDynamicRowspan = (currentRowIndex, currentColIndex, allRows) => {
-  // 하드코딩된 데이터에서는 기본적으로 1개의 행만 차지
+  // Hardcoded data occupies a single row by default
   return 1;
 };
 
-// 하드코딩된 데이터에서는 간단한 이벤트 처리
+// Simple event handling for hardcoded data
 // eslint-disable-next-line no-unused-vars
 const getColumnEvents = (colIndex, allRows) => {
-  // 하드코딩된 데이터에서는 빈 배열 반환
+  // Return an empty array for hardcoded data
   return [];
 };
 
-// 특정 시간에 해당하는 행 인덱스 찾기
+// Find the row index for a given time
 // eslint-disable-next-line no-unused-vars
 const findRowIndexByTime = (targetTime, allRows) => {
   for (let i = 0; i < allRows.length; i++) {
@@ -796,12 +796,12 @@ const findRowIndexByTime = (targetTime, allRows) => {
   return -1;
 };
 
-// 테이블 행을 처리하여 rowspan이 적용된 셀 구조 생성
+// Process table rows to build a cell structure with rowspan applied
 const getProcessedRows = () => {
   if (!tableData.value.rows || tableData.value.rows.length === 0) return [];
 
   const rows = [];
-  const spannedCells = new Set(); // 이미 span으로 숨겨진 셀들 추적
+  const spannedCells = new Set(); // Track cells already hidden by a span
 
   for (let rowIndex = 0; rowIndex < tableData.value.rows.length; rowIndex++) {
     const originalRow = tableData.value.rows[rowIndex];
@@ -812,12 +812,12 @@ const getProcessedRows = () => {
       cells: [],
     };
 
-    // 시간 컬럼을 제외한 세션 컬럼들 처리
+    // Process the session columns (excluding the time column)
     for (let colIndex = 1; colIndex < originalRow.length; colIndex++) {
       const cellKey = `${rowIndex}-${colIndex}`;
 
       if (spannedCells.has(cellKey)) {
-        // 이미 이전 행의 rowspan에 포함된 셀은 숨김
+        // Hide cells already covered by a previous row's rowspan
         processedRow.cells.push({
           value: "",
           hidden: true,
@@ -830,7 +830,7 @@ const getProcessedRows = () => {
 
       const cellValue = originalRow[colIndex] || "";
 
-      // "End" 마커인 경우 숨김 처리 (rowspan에 포함되므로)
+      // Hide "End" markers (they are covered by the rowspan)
       if (cellValue && cellValue.trim().toLowerCase() === "end") {
         processedRow.cells.push({
           value: "",
@@ -844,9 +844,9 @@ const getProcessedRows = () => {
 
       const sessionInfo = getSessionInfo(cellValue, rowIndex, colIndex - 1); // colIndex - 1 because we're excluding time column
 
-      // rowspan 적용
+      // Apply rowspan
       if (sessionInfo.rowspan > 1) {
-        // 해당 셀이 차지할 다른 행들을 spannedCells에 추가
+        // Add the other rows this cell will occupy to spannedCells
         for (
           let r = rowIndex + 1;
           r < rowIndex + sessionInfo.rowspan && r < tableData.value.rows.length;
@@ -871,59 +871,59 @@ const getProcessedRows = () => {
   return rows;
 };
 
-// 하드코딩된 데이터 로드
+// Load the hardcoded data
 const loadSheetData = async () => {
   loading.value = true;
   error.value = null;
 
   try {
-    // 하드코딩된 데이터 사용
+    // Use the hardcoded data
     sheetData.value = hardcodedProgramData;
 
-    // 병합된 셀 정보는 하드코딩된 데이터에서는 지원하지 않으므로 빈 객체 사용
+    // Merged cell info is not supported for hardcoded data, so use an empty object
     mergedCellsInfo.value = {};
 
-    // 하드코딩된 데이터에서는 병합 정보가 없으므로 별도 처리하지 않음
+    // Hardcoded data has no merge info, so no extra handling
     // googleSheetsService.getMergedCellsInfo(metadata.sheets, "Program");
 
-    // 데이터 구조 디버깅
-    console.log("=== 하드코딩된 데이터 디버깅 ===");
-    console.log("전체 데이터:", hardcodedProgramData);
+    // Debug the data structure
+    console.log("=== Hardcoded data debug ===");
+    console.log("All data:", hardcodedProgramData);
     if (hardcodedProgramData && hardcodedProgramData.length > 0) {
-      console.log("첫 번째 행 (헤더):", hardcodedProgramData[0]);
-      console.log("두 번째 행:", hardcodedProgramData[1]);
-      console.log("세 번째 행:", hardcodedProgramData[2]);
-      console.log("네 번째 행 (장소):", hardcodedProgramData[3]);
-      console.log("다섯 번째 행:", hardcodedProgramData[4]);
-      console.log("첫 번째 데이터 행:", hardcodedProgramData[5]);
+      console.log("Row 1 (header):", hardcodedProgramData[0]);
+      console.log("Row 2:", hardcodedProgramData[1]);
+      console.log("Row 3:", hardcodedProgramData[2]);
+      console.log("Row 4 (venue):", hardcodedProgramData[3]);
+      console.log("Row 5:", hardcodedProgramData[4]);
+      console.log("First data row:", hardcodedProgramData[5]);
     }
-    console.log("=== 변환된 테이블 데이터 ===");
+    console.log("=== Converted table data ===");
     const formatted = formatDataAsTable(hardcodedProgramData);
-    console.log("헤더:", formatted.headers);
-    console.log("행 개수:", formatted.rows.length);
+    console.log("Headers:", formatted.headers);
+    console.log("Row count:", formatted.rows.length);
     if (formatted.rows.length > 0) {
-      console.log("첫 번째 행:", formatted.rows[0]);
-      console.log("두 번째 행:", formatted.rows[1]);
+      console.log("First row:", formatted.rows[0]);
+      console.log("Second row:", formatted.rows[1]);
     }
     console.log("===================");
   } catch (err) {
-    console.error("데이터 로드 오류:", err);
-    error.value = err.message || "데이터를 불러오는 중 오류가 발생했습니다.";
+    console.error("Data load error:", err);
+    error.value = err.message || "An error occurred while loading the program.";
   } finally {
     loading.value = false;
   }
 };
 
-// 하드코딩된 데이터를 위한 테이블 형식 변환 함수
+// Converts the hardcoded data into table format
 const formatDataAsTable = (data) => {
   if (!data || data.length === 0) {
     return { headers: [], rows: [] };
   }
 
-  // 헤더는 첫 번째 행(날짜)을 사용
+  // Use the first row (dates) as the header
   const headers = data[0] || [];
 
-  // 실제 데이터는 4번째 행부터 시작 (0-based index로 3번째)
+  // Actual data starts at the 4th row (index 3, 0-based)
   const rows = data.slice(4) || [];
 
   return {
@@ -932,7 +932,7 @@ const formatDataAsTable = (data) => {
   };
 };
 
-// 셀 클릭 핸들러
+// Cell click handler
 const handleCellClick = (
   event,
   cellValue,
@@ -945,24 +945,24 @@ const handleCellClick = (
   }
 };
 
-// 캘린더 메뉴 표시 핸들러
+// Calendar menu display handler
 const showCalendarMenu = (event, cellValue, rowIndex, cellIndex) => {
-  // 유효한 이벤트인지 확인
+  // Check whether this is a valid event
   if (!isValidEvent(cellValue)) {
     return;
   }
 
-  // 해당 행의 시간 정보 가져오기
+  // Get the time info for this row
   const timeString = tableData.value.rows[rowIndex][0];
   if (!timeString) {
     console.warn("Time information not found");
     return;
   }
 
-  // 컬럼 인덱스는 1부터 시작 (시간 컬럼 제외)
+  // Column index starts at 1 (excluding the time column)
   const columnIndex = cellIndex + 1;
 
-  console.log("셀 클릭 디버깅:", {
+  console.log("Cell click debug:", {
     cellValue,
     cellIndex,
     columnIndex,
@@ -970,14 +970,14 @@ const showCalendarMenu = (event, cellValue, rowIndex, cellIndex) => {
     rowIndex,
   });
 
-  // 이벤트 데이터 구성
+  // Build the event data
   const eventData = {
     title: cellValue,
     timeString: timeString,
     columnIndex: columnIndex,
   };
 
-  // 메뉴 위치 설정 (클릭한 위치 기준, 화면 경계 고려)
+  // Position the menu (relative to the click, respecting screen bounds)
   const menuWidth = 300;
   const menuHeight = 200;
   const padding = 10;
@@ -985,30 +985,30 @@ const showCalendarMenu = (event, cellValue, rowIndex, cellIndex) => {
   let x = event.clientX;
   let y = event.clientY;
 
-  // 화면 오른쪽 경계를 벗어나는 경우 왼쪽으로 이동
+  // Shift left if it overflows the right edge of the screen
   if (x + menuWidth > window.innerWidth) {
     x = window.innerWidth - menuWidth - padding;
   }
 
-  // 화면 아래쪽 경계를 벗어나는 경우 위로 이동
+  // Shift up if it overflows the bottom edge of the screen
   if (y + menuHeight > window.innerHeight) {
     y = window.innerHeight - menuHeight - padding;
   }
 
-  // 최소 위치 보장
+  // Enforce a minimum position
   x = Math.max(padding, x);
   y = Math.max(padding, y);
 
   menuPosition.value = { x, y };
 
-  // 선택된 이벤트 데이터 저장
+  // Store the selected event data
   selectedEventData.value = eventData;
 
-  // 메뉴 열기
+  // Open the menu
   calendarMenuOpen.value = true;
 };
 
-// 캘린더 아이콘 반환
+// Return the calendar icon
 const getCalendarIcon = (calendarId) => {
   const icons = {
     google: "mdi-google",
@@ -1019,7 +1019,7 @@ const getCalendarIcon = (calendarId) => {
   return icons[calendarId] || "mdi-calendar";
 };
 
-// 캘린더 이름 반환 (영어)
+// Return the calendar name (English)
 const getCalendarName = (calendarId) => {
   const names = {
     google: "Google Calendar",
@@ -1030,9 +1030,9 @@ const getCalendarName = (calendarId) => {
   return names[calendarId] || "Calendar";
 };
 
-// 캘린더 선택 핸들러
+// Calendar selection handler
 const handleCalendarSelection = async (calendar) => {
-  // 메뉴 닫기
+  // Close the menu
   calendarMenuOpen.value = false;
 
   if (!selectedEventData.value) {
@@ -1045,14 +1045,14 @@ const handleCalendarSelection = async (calendar) => {
     console.log(`${calendarName} selected:`, selectedEventData.value);
 
     if (calendar.id === "download") {
-      // ICS 파일 다운로드
+      // Download ICS file
       downloadICSFile(selectedEventData.value);
     } else if (calendar.id === "google") {
-      // Google Calendar 열기
+      // Open Google Calendar
       const url = generateGoogleCalendarUrl(selectedEventData.value);
       window.open(url, "_blank");
     } else if (calendar.id === "outlook") {
-      // Outlook 열기
+      // Open Outlook
       const url = generateOutlookUrl(selectedEventData.value);
       window.open(url, "_blank");
     } else if (calendar.id === "apple") {
@@ -1063,47 +1063,47 @@ const handleCalendarSelection = async (calendar) => {
   } catch (error) {
     const calendarName = getCalendarName(calendar.id);
     console.error(`Error adding to ${calendarName}:`, error);
-    // 폴백: ICS 다운로드
+    // Fallback: download ICS
     downloadICSFile(selectedEventData.value);
   }
 };
 
-// 모든 유효한 이벤트 수집 (중복 제거)
+// Collect all valid events (deduplicated)
 const getAllValidEvents = () => {
   const allEvents = [];
-  const seenEvents = new Set(); // 중복 제거를 위한 Set
+  const seenEvents = new Set(); // Set used for deduplication
 
   if (!tableData.value.rows || tableData.value.rows.length === 0) {
     return allEvents;
   }
 
-  // 모든 행과 컬럼을 순회하여 유효한 이벤트 찾기
+  // Iterate over all rows and columns to find valid events
   for (let rowIndex = 0; rowIndex < tableData.value.rows.length; rowIndex++) {
     const row = tableData.value.rows[rowIndex];
     if (!row) continue;
 
-    const timeString = row[0]; // 시간 정보
+    const timeString = row[0]; // Time info
     if (!timeString) continue;
 
-    // 시간 컬럼을 제외한 세션 컬럼들 확인 (1부터 시작)
+    // Check the session columns, excluding the time column (starting at 1)
     for (let colIndex = 1; colIndex < row.length; colIndex++) {
       const cellValue = row[colIndex];
 
       if (isValidEvent(cellValue)) {
-        // 윗첨자 제거하여 이벤트 타입 정규화
+        // Normalize the event type by stripping superscripts
         const normalizedTitle = cellValue
           .replace(/[¹²³⁴⁵⁶⁷⁸⁹⁰]/g, "")
           .replace(/\n/g, " ")
           .replace(/\s+/g, " ")
           .trim();
 
-        // 날짜 정보 가져오기 (컬럼 기반)
+        // Get the date info (based on column)
         const dateStr = getDateFromColumnIndex(colIndex);
 
-        // 중복 체크를 위한 고유 키 생성
+        // Build a unique key for duplicate checking
         const eventKey = `${normalizedTitle}-${dateStr}`;
 
-        // 이미 처리된 이벤트인지 확인
+        // Check whether this event was already processed
         if (!seenEvents.has(eventKey)) {
           seenEvents.add(eventKey);
 
@@ -1122,7 +1122,7 @@ const getAllValidEvents = () => {
   return allEvents;
 };
 
-// 컬럼 인덱스에서 날짜 정보 가져오기
+// Get the date info from a column index
 const getDateFromColumnIndex = (columnIndex) => {
   const COLUMN_TO_DATE = {
     1: "9/20", // Satellite
@@ -1137,7 +1137,7 @@ const getDateFromColumnIndex = (columnIndex) => {
   return COLUMN_TO_DATE[columnIndex] || "unknown";
 };
 
-// 전체 일정 다운로드
+// Download the full schedule
 const downloadAllEvents = async () => {
   downloadingAll.value = true;
 
@@ -1168,21 +1168,21 @@ const downloadAllEvents = async () => {
   }
 };
 
-// 컴포넌트 마운트 시 데이터 로드
+// Load data when the component mounts
 onMounted(() => {
   loadSheetData();
 });
 </script>
 
 <style scoped>
-/* 제목이 잘리지 않도록 줄바꿈 허용 */
+/* Allow line wrapping so the title is not cut off */
 .v-card-title {
   white-space: normal !important;
   word-break: break-word !important;
   line-height: 1.4 !important;
 }
 
-/* 모바일에서 제목 폰트 사이즈 조정 */
+/* Adjust the title font size on mobile */
 @media (max-width: 768px) {
   .v-card-title {
     font-size: 1.5rem !important;
@@ -1203,12 +1203,12 @@ onMounted(() => {
   padding: 0;
 }
 
-/* 테이블 컨테이너 */
+/* Table container */
 .table-container {
   width: 100%;
 }
 
-/* Venue Legend (표 위) 스타일링 */
+/* Venue Legend (above the table) styling */
 .venue-legend-top {
   margin-bottom: 20px;
 }
@@ -1220,7 +1220,7 @@ onMounted(() => {
   overflow: hidden;
 }
 
-/* 가로 배치 Legend 스타일 */
+/* Horizontal legend layout style */
 .legend-items-row {
   display: flex;
   flex-wrap: nowrap;
@@ -1335,7 +1335,7 @@ onMounted(() => {
   text-decoration: none;
 }
 
-/* 모바일에서 가로 스크롤 활성화 */
+/* Enable horizontal scrolling on mobile */
 @media (max-width: 768px) {
   .sheets-container {
     overflow-x: auto;
@@ -1373,7 +1373,7 @@ onMounted(() => {
     background: #999;
   }
 
-  /* 스크롤 인디케이터 스타일 */
+  /* Scroll indicator style */
   .sheets-container {
     position: relative;
   }
@@ -1396,7 +1396,7 @@ onMounted(() => {
   }
 }
 
-/* 일일 프로그램 스케줄 테이블 스타일링 */
+/* Daily program schedule table styling */
 .program-table {
   width: 100%;
   border-collapse: collapse;
@@ -1404,15 +1404,15 @@ onMounted(() => {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   background: white;
   font-size: 1rem;
-  table-layout: fixed; /* 고정 테이블 레이아웃으로 컬럼 너비 일정하게 */
-  border: 1px solid #000000; /* 전체 표 바깥 테두리 */
+  table-layout: fixed; /* Fixed table layout keeps column widths consistent */
+  border: 1px solid #000000; /* Outer border of the whole table */
 }
 
-/* 모바일에서 테이블 최소 너비 설정 */
+/* Set the table minimum width on mobile */
 @media (max-width: 768px) {
   .program-table {
-    min-width: 800px; /* 모든 컬럼이 보이도록 최소 너비 설정 */
-    table-layout: auto; /* 모바일에서는 자동 레이아웃으로 변경 */
+    min-width: 800px; /* Minimum width so all columns are visible */
+    table-layout: auto; /* Switch to auto layout on mobile */
   }
 }
 
@@ -1431,16 +1431,16 @@ onMounted(() => {
   background-color: #ffffff;
   text-align: center;
   font-size: 0.875rem;
-  min-height: 120px; /* 4행 헤더에 맞게 높이 증가 */
+  min-height: 120px; /* Taller to fit the 4-row header */
   vertical-align: middle;
-  width: 120px; /* 시간 컬럼 고정 너비 */
+  width: 120px; /* Fixed time column width */
   font-weight: 700;
   box-shadow: none;
 }
 
-/* 4단계 헤더 스타일 - 회색 톤 계층 구조 */
+/* 4-row header style - gray tone hierarchy */
 
-/* 첫 번째 행: 날짜 (가장 어두운 회색) */
+/* First row: date (darkest gray) */
 .date-row {
   background: #d0d0d0;
   color: #000000;
@@ -1460,7 +1460,7 @@ onMounted(() => {
   letter-spacing: 0.5px;
 }
 
-/* 두 번째 행: 요일 (중간 톤 회색) */
+/* Second row: day of week (mid-tone gray) */
 .day-row {
   background: #e0e0e0;
   color: #000000;
@@ -1480,7 +1480,7 @@ onMounted(() => {
   text-transform: uppercase;
 }
 
-/* 세 번째 행: 이벤트 타입 (밝은 회색) */
+/* Third row: event type (light gray) */
 .event-type-row {
   background: #e7e7e7;
   color: #000000;
@@ -1499,7 +1499,7 @@ onMounted(() => {
   color: #000000;
 }
 
-/* 네 번째 행: 장소 (가장 밝은 회색) */
+/* Fourth row: venue (lightest gray) */
 .venue-row {
   background: #f5f5f5;
   color: #000000;
@@ -1548,7 +1548,7 @@ onMounted(() => {
   vertical-align: middle;
   font-size: 0.9rem;
   white-space: nowrap;
-  width: 120px; /* 시간 컬럼 고정 너비 */
+  width: 120px; /* Fixed time column width */
 }
 
 .session-cell {
@@ -1562,7 +1562,7 @@ onMounted(() => {
   line-height: 1.3;
   font-size: 0.85rem;
   position: relative;
-  overflow: hidden; /* 긴 텍스트 숨김 */
+  overflow: hidden; /* Hide overflowing text */
   width: var(--session-column-width, calc((100% - 120px) / 8));
 }
 
@@ -1575,43 +1575,43 @@ onMounted(() => {
   text-align: center;
 }
 
-/* 구 헤더 스타일 제거됨 - 3단계 헤더로 대체 */
+/* Old header style removed - replaced by the multi-row header */
 
-/* 시간 스타일 제거됨 - 모든 시간이 동일한 스타일 */
+/* Time styles removed - all times share the same style */
 
-/* 이벤트별 색상 정의 - 제공된 색상 스펙트럼 기반 */
+/* Per-event color definitions - based on the provided color spectrum */
 
-/* 1. Registration (등록) - 연한 초록색: 등록/접수 */
+/* 1. Registration - light green: registration/check-in */
 .registration-session {
   background-color: #e8f5e8 !important;
   color: #000000 !important;
   font-weight: 600 !important;
 }
 
-/* 2. Keynote, Tutorial, Oral Session (핵심 발표, 튜토리얼, 구두발표) - 하늘색: 학술적/정보 전달 */
+/* 2. Keynote, Tutorial, Oral Session - sky blue: academic/informational */
 .keynote-session {
   background-color: #e6f2fd !important;
   color: #000000 !important;
   font-weight: 700 !important;
 }
 
-/* 2. Opening (개회식) - 베이지: Lunch와 동일한 색상 */
+/* 2. Opening - beige: same color as Lunch */
 
-/* 3. Poster Session (포스터) - 라벤더: 상호작용/토론 */
+/* 3. Poster Session - lavender: interaction/discussion */
 .poster-session {
   background-color: #f3e5f5 !important;
   color: #000000 !important;
   font-weight: 600 !important;
 }
 
-/* 4. Industry Session (산업계) - 연초록: 실무/비즈니스 */
+/* 4. Industry Session - light green: practice/business */
 .industry-session {
   background-color: #c8e6c9 !important;
   color: #000000 !important;
   font-weight: 600 !important;
 }
 
-/* 5. Lunch (점심) - 베이지: 휴식/네트워킹 */
+/* 5. Lunch - beige: break/networking */
 .lunch-session {
   background-color: #fff8dc !important;
   color: #000000 !important;
@@ -1619,7 +1619,7 @@ onMounted(() => {
   font-style: italic !important;
 }
 
-/* 6. Coffee (커피) - 연한 갈색: 휴식/카페 */
+/* 6. Coffee - light brown: break/cafe */
 .Coffee-session {
   background-color: #f5e6d3 !important;
   color: #000000 !important;
@@ -1627,42 +1627,42 @@ onMounted(() => {
   font-style: italic !important;
 }
 
-/* 7. Social Events (사교행사) - 코랄 핑크: 사교/즐거움 */
+/* 7. Social Events - coral pink: social/fun */
 .social-session {
   background-color: #ffb3ba !important;
   color: #000000 !important;
   font-weight: 600 !important;
 }
 
-/* 8. Closing/Award/Society meeting (폐회식/시상식/학회 모임) - 연초록: 공식/의례 */
+/* 8. Closing/Award/Society meeting - light green: formal/ceremonial */
 .ceremony-session {
   background-color: #c8e6c9 !important;
   color: #000000 !important;
   font-weight: 700 !important;
 }
 
-/* 9. Special Events (특별 이벤트) - 연주황: 특별/독특함 */
+/* 9. Special Events - light orange: special/unique */
 .special-event-session {
   background-color: #ffe0b2 !important;
   color: #000000 !important;
   font-weight: 600 !important;
 }
 
-/* 10. WIMIR/Diversity - 연초록: 다양성/포용성 */
+/* 10. WIMIR/Diversity - light green: diversity/inclusion */
 .diversity-session {
   background-color: #c8e6c9 !important;
   color: #000000 !important;
   font-weight: 600 !important;
 }
 
-/* 11. Late-Breaking/Demo - 라벤더: Poster Session과 동일 */
+/* 11. Late-Breaking/Demo - lavender: same as Poster Session */
 .demo-session {
   background-color: #ffe0b2 !important;
   color: #000000 !important;
   font-weight: 600 !important;
 }
 
-/* 특별한 세션 스타일링 */
+/* Special session styling */
 .break-session {
   background-color: #f3e5f5 !important;
   font-style: italic !important;
@@ -1674,12 +1674,12 @@ onMounted(() => {
   white-space: nowrap;
 }
 
-/* 긴 세션 스타일 */
+/* Long session style */
 .session-cell {
   position: relative;
 }
 
-/* 클릭 가능한 세션 스타일 */
+/* Clickable session style */
 .clickable-session {
   cursor: pointer !important;
   transition: all 0.2s ease !important;
@@ -1696,7 +1696,7 @@ onMounted(() => {
   transform: scale(0.98) !important;
 }
 
-/* 클릭 가능한 세션에 다운로드 아이콘 힌트 추가 */
+/* Add a download icon hint to clickable sessions */
 .clickable-session::after {
   content: "📅";
   position: absolute;
@@ -1711,7 +1711,7 @@ onMounted(() => {
   opacity: 0.7;
 }
 
-/* 반응형 디자인 */
+/* Responsive design */
 @media (max-width: 1200px) {
   .date-cell {
     font-size: 0.9rem;
@@ -1750,7 +1750,7 @@ onMounted(() => {
 
   .time-header {
     font-size: 0.95rem;
-    min-height: 105px; /* 4행 헤더에 맞게 조정 */
+    min-height: 105px; /* Adjusted for the 4-row header */
   }
 }
 
@@ -1759,7 +1759,7 @@ onMounted(() => {
     font-size: 0.85rem;
     padding: 6px 4px;
     line-height: 1.2;
-    min-width: 80px; /* 최소 너비 보장 */
+    min-width: 80px; /* Guarantee a minimum width */
   }
 
   .day-cell {
@@ -1794,15 +1794,15 @@ onMounted(() => {
 
   .time-cell {
     font-size: 0.85rem;
-    width: 80px; /* 모바일에서 시간 컬럼 너비 증가 */
+    width: 80px; /* Wider time column on mobile */
     min-width: 80px;
     padding: 6px 4px;
   }
 
   .time-header {
     font-size: 0.9rem;
-    min-height: 100px; /* 4행 헤더에 맞게 조정 */
-    width: 80px; /* 모바일에서 시간 컬럼 너비 증가 */
+    min-height: 100px; /* Adjusted for the 4-row header */
+    width: 80px; /* Wider time column on mobile */
     min-width: 80px;
   }
 }
@@ -1847,25 +1847,25 @@ onMounted(() => {
 
   .time-cell {
     font-size: 0.8rem;
-    width: 75px; /* 모바일에서 시간 컬럼 너비 */
+    width: 75px; /* Time column width on mobile */
     min-width: 75px;
     padding: 5px 3px;
   }
 
   .time-header {
     font-size: 0.85rem;
-    min-height: 85px; /* 4행 헤더에 맞게 조정 */
-    width: 75px; /* 모바일에서 시간 컬럼 너비 */
+    min-height: 85px; /* Adjusted for the 4-row header */
+    width: 75px; /* Time column width on mobile */
     min-width: 75px;
   }
 
-  /* 매우 작은 화면에서 프로그램 테이블 최소 너비 */
+  /* Program table minimum width on very small screens */
   .program-table {
     min-width: 700px;
   }
 }
 
-/* 캘린더 메뉴 스타일 */
+/* Calendar menu style */
 .calendar-menu-overlay {
   position: fixed;
   top: 0;

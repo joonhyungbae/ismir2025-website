@@ -124,7 +124,7 @@ const router = useRouter()
 
 // Important Dates �������� �̵��ϴ� �Լ�
 const goToImportantDates = () => {
-  router.push({ name: 'important-dates' }) // 라우터 이름을 통한 이동
+  router.push({ name: 'important-dates' }) // Navigate by route name
 }
 */
 

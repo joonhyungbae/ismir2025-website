@@ -1,5 +1,5 @@
-// 정확한 ISMIR 2025 스폰서 데이터 (이미지 기준으로 수정)
-// 각 스폰서는 여러 티어에 속할 수 있음 (tiers 배열 사용)
+// Accurate ISMIR 2025 sponsor data (corrected against the sponsor image)
+// A sponsor may belong to multiple tiers (uses the tiers array)
 export const sponsors = [
   // Platinum Sponsors
   {

@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <div class="custom-table">
-          <!-- 테이블 본문 -->
+          <!-- Table body -->
           <v-row v-for="item in items" :key="item.content" class="table-row">
             <!-- Content column -->
             <v-col cols="12" sm="7" md="4">

@@ -109,7 +109,7 @@ import { computed } from "vue";
 import SponsorCard from "@/components/base/SponsorCard.vue";
 import { sponsors } from "@/data/sponsors.js";
 
-// 티어별로 스폰서 분류
+// Group sponsors by tier
 
 const platinumSponsors = computed(() =>
   sponsors.filter((s) => s.tiers.includes("platinum"))

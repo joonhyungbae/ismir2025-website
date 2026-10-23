@@ -1,13 +1,13 @@
 <template>
   <v-row justify="center" id="call-for-papers">
     <v-col cols="12" md="8">
-      <!-- 1) Call for Sponsors 영역 -->
+      <!-- 1) Call for Sponsors area -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Call for Sponsors
         </v-card-title>
 
-        <!-- 소개 텍스트 -->
+        <!-- Intro text -->
         <v-card-text class="text-body">
           We are excited to announce the Call for Sponsors for the 26th
           International Society for Music Information Retrieval Conference
@@ -28,7 +28,7 @@
           WIMIR will be on
           <span class="highlight-text">August 15, 2025.</span>
         </v-card-text>
-        <!-- PDF 다운로드 버튼 (초반에 배치) -->
+        <!-- PDF download button (placed near the top) -->
         <!-- 
         <v-card-text class="text-center mt-5">
           <v-btn
@@ -53,7 +53,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- 2) Sponsorship Packages 영역 -->
+      <!-- 2) Sponsorship Packages area -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Sponsorship Packages
@@ -76,7 +76,7 @@
         <v-card-text class="text-body mt-5">
           <h3>ISMIR Sponsorship Packages</h3>
           <v-container class="table-container" fluid>
-            <!-- 헤더 행 -->
+            <!-- Header row -->
             <v-row class="table-row styled-row table-header">
               <v-col cols="4">Tier</v-col>
               <v-col cols="2" class="text-center header-medium">Platinum</v-col>
@@ -183,7 +183,7 @@
           <h3>WIMIR Sponsorship Packages</h3>
 
           <v-container class="table-container" fluid>
-            <!-- 헤더 -->
+            <!-- Header -->
             <v-row class="table-row styled-row table-header">
               <v-col cols="6">Tier</v-col>
               <v-col cols="2" class="text-center">Patron</v-col>
@@ -191,7 +191,7 @@
               <v-col cols="2" class="text-center header-small">Supporter</v-col>
             </v-row>
 
-            <!-- 가격 -->
+            <!-- Price -->
             <v-row class="table-row styled-row">
               <v-col cols="6">Price</v-col>
               <v-col cols="2" class="text-center">$5,000</v-col>
@@ -199,7 +199,7 @@
               <v-col cols="2" class="text-center">$500</v-col>
             </v-row>
 
-            <!-- SNS 인정 -->
+            <!-- Social media acknowledgment -->
             <v-row class="table-row styled-row">
               <v-col cols="6">
                 Social media acknowledgment through WIMIR's Twitter account
@@ -209,7 +209,7 @@
               <v-col cols="2" class="text-center">✅</v-col>
             </v-row>
 
-            <!-- 전용 프로그램 요소에서의 감사 표기 -->
+            <!-- Acknowledgment in dedicated program elements -->
             <v-row class="table-row styled-row">
               <v-col cols="6">
                 Acknowledgement in dedicated WIMIR program elements
@@ -219,7 +219,7 @@
               <v-col cols="2" class="text-center">✅</v-col>
             </v-row>
 
-            <!-- 로고 크기 -->
+            <!-- Logo size -->
             <v-row class="table-row styled-row">
               <v-col cols="6">
                 Logo (WIMIR website, official WIMIR @ ISMIR 2025 presentations)
@@ -235,13 +235,13 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- 3) Deadline & Contact 영역 -->
+      <!-- 3) Deadline & Contact area -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Contact
         </v-card-title>
 
-        <!-- 문의사항 -->
+        <!-- Inquiries -->
         <ul class="dot-list mt-3">
           <li>Minz Won (Sponsorship Chair, ISMIR 2025)</li>
           <li><a href="mailto:ismir2025-sponsorship@ismir.net" style="color:#1487c8;text-decoration:underline">ismir2025-sponsorship@ismir.net</a></li>
@@ -285,13 +285,13 @@ export default {
 }
 
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* 행 하단 회색 선 */
+  border-bottom: 1px solid #d3d3d3; /* Gray line under each row */
   padding-bottom: 8px;
-  align-items: center; /* 텍스트 수직 정렬 */
+  align-items: center; /* Vertically align text */
 }
 
 .table-header {
-  background-color: #f7f7f7; /* 헤더 행 배경색 */
+  background-color: #f7f7f7; /* Header row background color */
   font-weight: 600;
 }
 
@@ -307,28 +307,28 @@ export default {
 
 .table-container .table-row .v-col {
   text-align: center;
-  font-size: 15px; /* 표 안의 텍스트 크기 조절 */
+  font-size: 15px; /* Text size inside the table */
 }
 
-/* 모바일에서 표 텍스트 크기 조절 */
+/* Adjust table text size on mobile */
 @media (max-width: 768px) {
   .table-container .table-row .v-col {
-    font-size: 12px; /* 모바일에서 조금 더 작게 */
-    padding-left: 6px !important; /* 모바일에서 좌우 간격만 줄이기 */
+    font-size: 12px; /* Slightly smaller on mobile */
+    padding-left: 6px !important; /* Reduce only the horizontal spacing on mobile */
     padding-right: 6px !important;
   }
   .table-header {
-    font-size: 13px !important; /* 모바일에서 헤더 폰트 크기도 조절 */
+    font-size: 13px !important; /* Also adjust the header font size on mobile */
   }
   .header-medium {
-    font-size: 10px !important; /* Platinum 헤더 크기 */
+    font-size: 10px !important; /* Platinum header size */
   }
   .header-small {
-    font-size: 8px !important; /* Contributor, Supporter 헤더를 더 작게 */
+    font-size: 8px !important; /* Make the Contributor and Supporter headers smaller */
   }
   .table-container {
-    padding: 0 8px; /* 컨테이너의 좌우 패딩도 줄이기 */
-    margin-top: 24px !important; /* 모바일에서 표 전체의 위아래 여백 늘리기 */
+    padding: 0 8px; /* Also reduce the container horizontal padding */
+    margin-top: 24px !important; /* Increase the vertical margin around the table on mobile */
     margin-bottom: 24px !important;
   }
 }

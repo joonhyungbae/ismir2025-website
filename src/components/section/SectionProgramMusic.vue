@@ -475,7 +475,7 @@ export default {
     scrollToSection(sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
-        const offset = 100; // 상단에서 100px 아래로 스크롤
+        const offset = 100; // Scroll to 100px below the top
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -514,7 +514,7 @@ export default {
 
 .performance-title {
   color: #004191 !important;
-  font-size: 1.3rem !important; /* 기본 text-h5보다 작게 */
+  font-size: 1.3rem !important; /* Smaller than the default text-h5 */
 }
 
 .performance-type {

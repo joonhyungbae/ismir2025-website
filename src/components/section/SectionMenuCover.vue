@@ -305,7 +305,7 @@ const items = computed(() => {
     },
   ];
 
-  // 상위 메뉴가 있는 경우 추가
+  // Add the parent menu if there is one
   if (currentTitle.value?.parent) {
     breadcrumbItems.push({
       title: currentTitle.value.parent,
@@ -314,7 +314,7 @@ const items = computed(() => {
     });
   }
 
-  // 현재 페이지 추가
+  // Add the current page
   breadcrumbItems.push({
     title: currentTitle.value?.title,
     disabled: true,

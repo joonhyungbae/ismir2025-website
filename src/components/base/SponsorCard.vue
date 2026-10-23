@@ -4,7 +4,7 @@
     class="sponsor-card-creative d-flex flex-column"
     style="height: 100%"
   >
-    <!-- 로고 섹션 - 최우선 가시성 -->
+    <!-- Logo section - top visual priority -->
     <div class="logo-showcase">
       <div class="logo-frame">
         <v-img
@@ -15,15 +15,15 @@
           class="primary-logo"
         />
       </div>
-      <!-- 티어 배지 제거 -->
+      <!-- Tier badge removed -->
       <!-- <div class="tier-badge" :class="`tier-${sponsor?.tier || 'bronze'}`">
         {{ getTierLabel(sponsor?.tier) }}
       </div> -->
     </div>
 
-    <!-- 콘텐츠 영역 -->
+    <!-- Content area -->
     <div class="sponsor-content pa-6 flex-grow-1 d-flex flex-column">
-      <!-- 스폰서 설명 부분 주석처리 -->
+      <!-- Sponsor description commented out -->
       <!-- <div class="sponsor-description" v-if="sponsor?.description?.length">
         <p
           v-for="(paragraph, index) in sponsor.description"
@@ -34,9 +34,9 @@
         </p>
       </div> -->
 
-      <!-- 웹사이트 및 비디오 링크 -->
+      <!-- Website and video links -->
       <div class="sponsor-links mt-auto pt-4">
-        <!-- 웹사이트 버튼 -->
+        <!-- Website button -->
         <div
           v-if="sponsor && sponsor.website && sponsor.website.trim()"
           class="website-section mb-3"
@@ -54,7 +54,7 @@
           </v-btn>
         </div>
 
-        <!-- YouTube 비디오 링크가 있는 경우 -->
+        <!-- Shown when a YouTube video link exists -->
         <div v-if="sponsor?.videos?.length > 0" class="sponsor-videos">
           <div class="videos-header mb-3">
             <h4 class="videos-title">Featured Content</h4>
@@ -90,24 +90,24 @@ const props = defineProps({
   },
 });
 
-// 로고 이미지 경로 계산
+// Compute the logo image path
 const logoSrc = computed(() => {
   if (!props.sponsor?.logo) return "";
 
-  // fhd 폴더의 webp 파일을 우선 사용, 없으면 일반 png 파일 사용
+  // Prefer the webp file in the fhd folder; fall back to the regular png file
   try {
     return require(`@/assets/logo/fhd/${props.sponsor.logo}.webp`);
   } catch {
     try {
       return require(`@/assets/logo/${props.sponsor.logo}.png`);
     } catch {
-      // 기본 이미지나 빈 이미지 반환
+      // Return a default or empty image
       return "";
     }
   }
 });
 
-// 티어 라벨 반환 함수 (현재 사용하지 않음)
+// Returns the tier label (currently unused)
 // const getTierLabel = (tier) => {
 //   if (!tier) return "Sponsor";
 
@@ -126,7 +126,7 @@ const logoSrc = computed(() => {
 </script>
 
 <style scoped>
-/* 창의적인 스폰서 카드 디자인 */
+/* Sponsor card design */
 .sponsor-card-creative {
   border-radius: 20px;
   margin: 32px 0;
@@ -160,7 +160,7 @@ const logoSrc = computed(() => {
   opacity: 0.1;
 }
 
-/* 로고 쇼케이스 섹션 */
+/* Logo showcase section */
 .logo-showcase {
   position: relative;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -218,7 +218,7 @@ const logoSrc = computed(() => {
   transform: scale(1.05);
 }
 
-/* 티어 배지 (제거됨) */
+/* Tier badge (removed) */
 /* .tier-badge {
   position: absolute;
   top: 15px;
@@ -253,7 +253,7 @@ const logoSrc = computed(() => {
   color: #2c3e50;
 } */
 
-/* 콘텐츠 영역 */
+/* Content area */
 .description-text {
   font-size: 16px;
   line-height: 1.8;
@@ -267,7 +267,7 @@ const logoSrc = computed(() => {
   color: #343a40;
 }
 
-/* 링크 섹션 */
+/* Link section */
 .sponsor-links {
   border-top: 1px solid #f0f0f0;
   padding-top: 20px;
@@ -292,7 +292,7 @@ const logoSrc = computed(() => {
   box-shadow: 0 8px 30px rgba(94, 191, 237, 0.6);
 }
 
-/* 비디오 섹션 */
+/* Video section */
 .sponsor-videos {
   background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%);
   border-radius: 16px;
@@ -328,7 +328,7 @@ const logoSrc = computed(() => {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* 반응형 디자인 */
+/* Responsive design */
 @media (max-width: 768px) {
   .logo-showcase {
     padding: 30px 20px 20px;
@@ -374,7 +374,7 @@ const logoSrc = computed(() => {
   }
 }
 
-/* 진입 애니메이션 */
+/* Entrance animation */
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -390,7 +390,7 @@ const logoSrc = computed(() => {
   animation: slideInUp 0.6s ease-out;
 }
 
-/* 로고 프레임 호버 효과 */
+/* Logo frame hover effect */
 @keyframes pulse {
   0%,
   100% {

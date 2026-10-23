@@ -254,12 +254,12 @@
   <!-- Slide Drawer -->
   <v-navigation-drawer v-model="drawer" app temporary left scrollable>
     <v-list>
-      <!-- 일반 메뉴 항목 -->
+      <!-- Regular menu items -->
       <v-list-item :to="{ name: 'home' }" @click="drawer = false">
         <v-list-item-title>Home</v-list-item-title>
       </v-list-item>
 
-      <!-- Program 드롭다운 메뉴 -->
+      <!-- Program dropdown menu -->
       <v-list-group value="program">
         <template v-slot:activator="{ props }">
           <v-list-item v-bind="props" title="Program"></v-list-item>
@@ -285,7 +285,7 @@
         <v-list-item-title>Virtual Platform</v-list-item-title>
       </v-list-item>
 
-      <!-- Author and Presenter Information 드롭다운 메뉴 -->
+      <!-- Author and Presenter Information dropdown menu -->
       <v-list-group value="ip">
         <template v-slot:activator="{ props }">
           <v-list-item
@@ -305,7 +305,7 @@
         </v-list-item>
       </v-list-group>
 
-      <!-- Call 드롭다운 메뉴 -->
+      <!-- Call dropdown menu -->
       <v-list-group value="calls">
         <template v-slot:activator="{ props }">
           <v-list-item v-bind="props" title="Calls"></v-list-item>
@@ -322,7 +322,7 @@
         </v-list-item>
       </v-list-group>
 
-      <!-- Attend 드롭다운 메뉴 -->
+      <!-- Attend dropdown menu -->
       <v-list-group value="attend">
         <template v-slot:activator="{ props }">
           <v-list-item v-bind="props" title="Attend"></v-list-item>
@@ -339,7 +339,7 @@
         </v-list-item>
       </v-list-group>
 
-      <!-- Sponsors 드롭다운 메뉴 -->
+      <!-- Sponsors dropdown menu -->
       <v-list-group value="sponsors">
         <template v-slot:activator="{ props }">
           <v-list-item v-bind="props" title="Sponsors"></v-list-item>
@@ -356,7 +356,7 @@
         </v-list-item>
       </v-list-group>
 
-      <!-- Diversity and Inclusion 드롭다운 메뉴 -->
+      <!-- Diversity and Inclusion dropdown menu -->
       <v-list-group value="diversity">
         <template v-slot:activator="{ props }">
           <v-list-item
@@ -376,7 +376,7 @@
         </v-list-item>
       </v-list-group>
 
-      <!-- Satellite Events 드롭다운 메뉴 -->
+      <!-- Satellite Events dropdown menu -->
       <v-list-group value="satelite">
         <template v-slot:activator="{ props }">
           <v-list-item v-bind="props" title="Satellite Events"></v-list-item>
@@ -393,7 +393,7 @@
         </v-list-item>
       </v-list-group>
 
-      <!-- About 드롭다운 메뉴 -->
+      <!-- About dropdown menu -->
       <v-list-group value="about">
         <template v-slot:activator="{ props }">
           <v-list-item v-bind="props" title="About"></v-list-item>

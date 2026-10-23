@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" id="call-for-papers">
     <v-col cols="12" md="8">
-      <!-- 안내 문구 영역 -->
+      <!-- Notice text area -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Registration
@@ -24,15 +24,15 @@
         <br />
       </v-card>
 
-      <!-- 등록비 영역 -->
+      <!-- Registration fee area -->
       <v-card outlined elevation="0" class="pa-4 my-4">
-        <!-- Registration Fee 타이틀 -->
+        <!-- Registration Fee title -->
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Registration Fee
         </v-card-title>
 
         <v-card-text class="text-body">
-          <!-- Basic Registration 서브타이틀 추가 -->
+          <!-- Basic Registration subtitle -->
           <div
             class="text-h5 mb-2 font-weight-bold pa-0"
             style="color: #004191"
@@ -40,10 +40,10 @@
             Basic Registration
           </div>
 
-          <!-- v-container + v-row + v-col 로 구성한 테이블 -->
-          <!-- fluid를 사용하면 컨테이너 폭 제한이 없어져 상위 v-col 너비를 전부 채울 수 있습니다. -->
+          <!-- Table built from v-container + v-row + v-col -->
+          <!-- fluid removes the container max-width so it can fill the parent v-col -->
           <v-container class="table-container" fluid>
-            <!-- 테이블 헤더 (4개 열) -->
+            <!-- Table header (4 columns) -->
             <v-row class="table-row styled-row table-header">
               <v-col cols="3" class="text-center"> </v-col>
               <v-col cols="3" class="text-center">
@@ -76,13 +76,13 @@
               <v-col cols="3"> USD 350 </v-col>
             </v-row>
 
-            <!-- Online (General) - colspan 대신 cols="9"로 3칸 합침 -->
+            <!-- Online (General) - cols="9" merges 3 cells instead of colspan -->
             <v-row class="table-row styled-row">
               <v-col cols="3"> Online (General) </v-col>
               <v-col cols="9" class="text-center"> USD 100 </v-col>
             </v-row>
 
-            <!-- Online (Student) - 마찬가지로 3칸 합쳐서 표현 -->
+            <!-- Online (Student) - likewise merged into 3 cells -->
             <v-row class="table-row styled-row">
               <v-col cols="3"> Online (Student) </v-col>
               <v-col cols="9" class="text-center"> USD 50 </v-col>
@@ -98,7 +98,7 @@
           </v-container>
         </v-card-text>
 
-        <!-- 추가 안내사항 -->
+        <!-- Additional notes -->
         <ul class="dot-list">
           <li>
             In-person registration (General & Student) includes access to the
@@ -112,7 +112,7 @@
         </ul>
 
         <v-card-text class="text-body">
-          <!-- Optional Registration 서브타이틀 추가 -->
+          <!-- Optional Registration subtitle -->
           <div
             class="text-h5 mb-2 font-weight-bold pa-0 mt-6"
             style="color: #004191"
@@ -121,7 +121,7 @@
           </div>
 
           <v-container class="table-container" fluid>
-            <!-- 테이블 헤더 -->
+            <!-- Table header -->
             <v-row class="table-row styled-row table-header">
               <v-col cols="3" class="text-center"> </v-col>
               <v-col cols="3" class="text-center">
@@ -168,9 +168,9 @@
           </v-container>
         </v-card-text>
 
-        <!-- 버튼 추가 -->
+        <!-- Buttons -->
         <v-card-text class="text-center mt-4">
-          <!-- 공지사항 추가 -->
+          <!-- Notice -->
           <!-- 
           <div class="registration-notice mb-4">
             <v-alert
@@ -192,7 +192,7 @@
             </v-alert>
           </div>
           -->
-          <!-- href 속성을 통해 외부 링크로 이동 -->
+          <!-- Opens an external link via the href attribute -->
           <v-btn
             large
             rounded
@@ -217,7 +217,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- Refund Policy 영역 -->
+      <!-- Refund Policy area -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Refund Policy
@@ -262,7 +262,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- Registration Inquiries 영역 -->
+      <!-- Registration Inquiries area -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Registration Inquiries
@@ -323,14 +323,14 @@ export default {
   overflow-wrap: break-word;
 }
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* 행 하단 회색 선 */
+  border-bottom: 1px solid #d3d3d3; /* Gray line under each row */
   padding-bottom: 8px;
-  align-items: center; /* 텍스트 수직 정렬 */
+  align-items: center; /* Vertically align text */
 }
 .table-header {
-  background-color: #f7f7f7; /* 헤더 행 배경색 */
+  background-color: #f7f7f7; /* Header row background color */
   font-weight: 600;
-  font-size: 16px !important; /* 헤더 폰트 크기 조절 */
+  font-size: 16px !important; /* Header font size */
 }
 .date-text {
   font-size: 12px;
@@ -342,36 +342,36 @@ export default {
   font-weight: bold;
 }
 
-/* 테이블 컨테이너: max-width 제거 혹은 width: 100% 적용 */
+/* Table container: remove max-width or apply width: 100% */
 .table-container {
-  /* max-width: 1000px;  ← 제거 */
-  width: 100%; /* <v-col> 너비를 전부 사용 */
-  margin: 0; /* 가운데 정렬을 원하지 않을 경우 0 처리 */
+  /* max-width: 1000px;  <- removed */
+  width: 100%; /* Use the full <v-col> width */
+  margin: 0; /* Set to 0 if centering is not wanted */
 }
 .table-container .table-row .v-col {
   text-align: center;
-  font-size: 15px; /* 표 안의 텍스트 크기 조절 */
+  font-size: 15px; /* Text size inside the table */
 }
 
-/* 모바일에서 표 텍스트 크기 조절 */
+/* Adjust table text size on mobile */
 @media (max-width: 768px) {
   .table-container .table-row .v-col {
-    font-size: 12px; /* 모바일에서 조금 더 작게 */
-    padding-left: 6px !important; /* 모바일에서 좌우 간격만 줄이기 */
+    font-size: 12px; /* Slightly smaller on mobile */
+    padding-left: 6px !important; /* Reduce only the horizontal spacing on mobile */
     padding-right: 6px !important;
   }
   .table-header {
-    font-size: 13px !important; /* 모바일에서 헤더 폰트 크기도 조절 */
+    font-size: 13px !important; /* Also adjust the header font size on mobile */
   }
   .date-text {
-    font-size: 10px; /* 모바일에서 날짜 텍스트 크기 조절 */
+    font-size: 10px; /* Date text size on mobile */
   }
   .table-container {
-    padding: 0 8px; /* 컨테이너의 좌우 패딩도 줄이기 */
+    padding: 0 8px; /* Also reduce the container horizontal padding */
   }
 }
 
-/* 알림창 스타일 추가 */
+/* Alert box styles */
 :deep(.v-alert) {
   background-color: #ed5e60 !important;
   color: white !important;

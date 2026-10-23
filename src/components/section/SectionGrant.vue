@@ -1,13 +1,13 @@
 <template>
   <v-row justify="center" id="grants">
     <v-col cols="12" md="8">
-      <!-- 1) Financial Support 영역 -->
+      <!-- 1) Financial Support section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Financial Support for ISMIR 2025
         </v-card-title>
 
-        <!-- 소개 텍스트 -->
+        <!-- Intro text -->
         <v-card-text class="text-body">
           As part of our commitment to fostering diversity and inclusion while
           supporting early-career members of the ISMIR community,
@@ -30,7 +30,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- 2) Forms of Support 영역 -->
+      <!-- 2) Forms of Support section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Forms of Support
@@ -48,7 +48,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- 3) Grant Categories 영역 -->
+      <!-- 3) Grant Categories section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Grant Categories
@@ -139,7 +139,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- 4) Grant Evaluation and Priority Categories 영역 -->
+      <!-- 4) Grant Evaluation and Priority Categories section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Grant Evaluation and Priority Categories
@@ -174,7 +174,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- 5) Procedure and Timeline 영역 -->
+      <!-- 5) Procedure and Timeline section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Procedure and Timeline
@@ -193,7 +193,7 @@
         <!-- Timeline Table -->
         <v-card-text class="text-body mt-5">
           <v-container class="table-container" fluid>
-            <!-- 헤더 행 -->
+            <!-- Header row -->
             <v-row class="table-row styled-row table-header">
               <v-col cols="4" class="text-center">Timeline (AoE)</v-col>
               <v-col cols="8" class="text-center">Details</v-col>
@@ -298,7 +298,7 @@
         <br />
       </v-card>
 
-      <!-- 6) Contact Information 영역 -->
+      <!-- 6) Contact Information section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-text class="text-body">
           For questions, you can reach the grant committee via
@@ -346,13 +346,13 @@ export default {
 }
 
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* 행 하단 회색 선 */
+  border-bottom: 1px solid #d3d3d3; /* Gray line under each row */
   padding-bottom: 8px;
-  align-items: center; /* 텍스트 수직 정렬 */
+  align-items: center; /* Vertically center the text */
 }
 
 .table-header {
-  background-color: #f7f7f7; /* 헤더 행 배경색 */
+  background-color: #f7f7f7; /* Header row background color */
   font-weight: 600;
 }
 

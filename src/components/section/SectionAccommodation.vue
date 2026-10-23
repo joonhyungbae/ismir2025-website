@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" id="accommodation">
     <v-col cols="12" md="8">
-      <!-- 1) Accommodation Information 영역 -->
+      <!-- 1) Accommodation Information section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Recommended Accommodations
@@ -24,7 +24,7 @@
         <br />
       </v-card>
 
-      <!-- 2) Hotel Information Table 영역 -->
+      <!-- 2) Hotel Information Table section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Hotel Information
@@ -33,7 +33,7 @@
         <!-- Hotel Information Table -->
         <v-card-text class="text-body mt-5">
           <v-container class="table-container" fluid>
-            <!-- 헤더 행 -->
+            <!-- Header row -->
             <v-row class="table-row styled-row table-header">
               <v-col cols="6" sm="6" md="4" class="text-center"
                 >Hotel Name</v-col
@@ -298,7 +298,7 @@
         <br /><br />
       </v-card>
 
-      <!-- 3) Hotels with Conference Room Blocks 영역 -->
+      <!-- 3) Hotels with Conference Room Blocks section -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Hotels with Conference Room Blocks
@@ -719,13 +719,13 @@ export default {
 }
 
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* 행 하단 회색 선 */
+  border-bottom: 1px solid #d3d3d3; /* Gray line under each row */
   padding-bottom: 8px;
-  align-items: center; /* 텍스트 수직 정렬 */
+  align-items: center; /* Vertically center the text */
 }
 
 .table-header {
-  background-color: #f7f7f7; /* 헤더 행 배경색 */
+  background-color: #f7f7f7; /* Header row background color */
   font-weight: 600;
 }
 
@@ -835,7 +835,7 @@ export default {
   object-fit: cover;
 }
 
-/* 모바일 화면에서 이미지가 너비를 꽉 채우도록 */
+/* Make images fill the full width on mobile screens */
 @media (max-width: 959px) {
   .hotel-main-image {
     width: 100%;
@@ -869,21 +869,21 @@ export default {
   font-weight: bold;
 }
 
-/* 데스크탑(md) 이상에서만 flex 적용 */
+/* Apply flex only on desktop (md) and up */
 @media (min-width: 960px) {
   .table-container .table-row .v-col {
     display: flex !important;
   }
 }
 
-/* 헤더 행에도 동일 적용 */
+/* Same for the header row */
 @media (min-width: 960px) {
   .table-container .table-row.table-header .v-col {
     display: flex !important;
   }
 }
 
-/* 모바일에서 호텔 정보 표(first column) 너비 조정 */
+/* Adjust the hotel info table first column width on mobile */
 @media (max-width: 959px) {
   .info-label {
     flex: 0 0 40% !important;
@@ -893,9 +893,9 @@ export default {
     flex: 0 0 60% !important;
     max-width: 60% !important;
   }
-  /* 버튼 폰트 크기 20% 축소 */
+  /* Reduce button font size by 20% */
   .hotel-info-table .v-btn {
-    font-size: 0.7rem !important; /* 30% 축소 */
+    font-size: 0.7rem !important; /* 30% smaller */
   }
 }
 </style>

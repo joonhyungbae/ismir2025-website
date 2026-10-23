@@ -392,7 +392,7 @@
         <br />
       </v-card>
 
-      <!-- 주요 위치 안내 지도 -->
+      <!-- Map of key locations -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Key Locations Map
@@ -498,14 +498,14 @@
                         >First and Last Bus Times</v-card-subtitle
                       >
                       <v-container class="schedule-table-container" fluid>
-                        <!-- 헤더 행 -->
+                        <!-- Header row -->
                         <v-row class="table-row styled-row table-header">
                           <v-col cols="4" class="text-center">Terminal</v-col>
                           <v-col cols="4" class="text-center">First Bus</v-col>
                           <v-col cols="4" class="text-center">Last Bus</v-col>
                         </v-row>
 
-                        <!-- Terminal 1 행 -->
+                        <!-- Terminal 1 row -->
                         <v-row class="table-row styled-row">
                           <v-col cols="4" class="text-center">
                             <v-chip
@@ -534,7 +534,7 @@
                           </v-col>
                         </v-row>
 
-                        <!-- Terminal 2 행 -->
+                        <!-- Terminal 2 row -->
                         <v-row class="table-row styled-row">
                           <v-col cols="4" class="text-center">
                             <v-chip
@@ -769,7 +769,7 @@
                       
                       <!-- Bus Schedule Table -->
                       <v-container class="table-container mt-4" fluid>
-                        <!-- 헤더 행 -->
+                        <!-- Header row -->
                         <v-row class="table-row styled-row table-header">
                           <v-col cols="2" class="text-center">Duration</v-col>
                           <v-col cols="2" class="text-center">First Departure</v-col>
@@ -925,7 +925,7 @@
                       </v-list>
 
                       <v-container class="schedule-table-container" fluid>
-                        <!-- 헤더 행 -->
+                        <!-- Header row -->
                         <v-row class="table-row styled-row table-header">
                           <v-col cols="4" class="text-center">Terminal</v-col>
                           <v-col cols="4" class="text-center"
@@ -934,7 +934,7 @@
                           <v-col cols="4" class="text-center">Last Train</v-col>
                         </v-row>
 
-                        <!-- Terminal 1 행 -->
+                        <!-- Terminal 1 row -->
                         <v-row class="table-row styled-row">
                           <v-col cols="4" class="text-center">
                             <v-chip
@@ -963,7 +963,7 @@
                           </v-col>
                         </v-row>
 
-                        <!-- Terminal 2 행 -->
+                        <!-- Terminal 2 row -->
                         <v-row class="table-row styled-row">
                           <v-col cols="4" class="text-center">
                             <v-chip
@@ -1046,7 +1046,7 @@
                       </v-list>
 
                       <v-container class="schedule-table-container" fluid>
-                        <!-- 헤더 행 -->
+                        <!-- Header row -->
                         <v-row class="table-row styled-row table-header">
                           <v-col cols="4" class="text-center">Terminal</v-col>
                           <v-col cols="4" class="text-center"
@@ -1055,7 +1055,7 @@
                           <v-col cols="4" class="text-center">Last Train</v-col>
                         </v-row>
 
-                        <!-- Terminal 1 행 -->
+                        <!-- Terminal 1 row -->
                         <v-row class="table-row styled-row">
                           <v-col cols="4" class="text-center">
                             <v-chip
@@ -1084,7 +1084,7 @@
                           </v-col>
                         </v-row>
 
-                        <!-- Terminal 2 행 -->
+                        <!-- Terminal 2 row -->
                         <v-row class="table-row styled-row">
                           <v-col cols="4" class="text-center">
                             <v-chip
@@ -1147,7 +1147,7 @@
                           class="schedule-table-container d-none d-md-block"
                           fluid
                         >
-                          <!-- 헤더 행 -->
+                          <!-- Header row -->
                           <v-row class="table-row styled-row table-header">
                             <v-col cols="2" class="text-center">Train</v-col>
                             <v-col cols="2" class="text-center">Duration</v-col>
@@ -1159,7 +1159,7 @@
                             >
                           </v-row>
 
-                          <!-- KTX 행 -->
+                          <!-- KTX row -->
                           <v-row class="table-row styled-row">
                             <v-col cols="2" class="text-center">
                               <v-chip small color="primary" text-color="white"
@@ -1524,7 +1524,7 @@
                           class="schedule-table-container d-none d-md-block"
                           fluid
                         >
-                          <!-- 헤더 행 -->
+                          <!-- Header row -->
                           <v-row class="table-row styled-row table-header">
                             <v-col cols="2" class="text-center">Train</v-col>
                             <v-col cols="2" class="text-center">Duration</v-col>
@@ -1536,7 +1536,7 @@
                             >
                           </v-row>
 
-                          <!-- KTX 행 -->
+                          <!-- KTX row -->
                           <v-row class="table-row styled-row">
                             <v-col cols="2" class="text-center">
                               <v-chip small color="primary" text-color="white"
@@ -2028,7 +2028,7 @@
                   
                   <!-- Bus Fare Table -->
                   <v-container class="table-container mt-4" fluid>
-                    <!-- 헤더 행 -->
+                    <!-- Header row -->
                     <v-row class="table-row styled-row table-header">
                       <v-col cols="3" class="text-center">Type</v-col>
                       <v-col cols="3" class="text-center">Passengers</v-col>
@@ -2036,7 +2036,7 @@
                       <v-col cols="3" class="text-center">Travel Card (won)</v-col>
                     </v-row>
 
-                    <!-- City Bus 행들 -->
+                    <!-- City Bus rows -->
                     <v-row class="table-row styled-row">
                       <v-col cols="3" class="text-center" style="border-right: 1px solid #d3d3d3;">City Bus</v-col>
                       <v-col cols="3" class="text-center">Adults (aged 19 and over)</v-col>
@@ -2737,7 +2737,7 @@ export default {
     scrollToSection(sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
-        const offset = 100; // 상단에서 100px 아래로 스크롤
+        const offset = 100; // Scroll to 100px below the top
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -3008,7 +3008,7 @@ export default {
   border-bottom: none;
 }
 
-/* 데스크탑에서만 flex 적용 */
+/* Apply flex on desktop only */
 @media (min-width: 960px) {
   .schedule-table-container .table-row .v-col {
     display: flex !important;
@@ -3041,7 +3041,7 @@ export default {
   text-align: center;
 }
 
-/* 데스크탑에서만 flex 적용 */
+/* Apply flex on desktop only */
 @media (min-width: 960px) {
   .table-container .table-row .v-col {
     display: flex !important;
@@ -3527,7 +3527,7 @@ a:hover {
   line-height: 1.4;
 }
 
-/* 카드 제목 줄바꿈 */
+/* Card title line wrapping */
 .v-card-title {
   white-space: normal !important;
   word-break: keep-all;
@@ -3542,7 +3542,7 @@ a:hover {
   line-height: 1.3;
 }
 
-/* 일반 텍스트 요소들 */
+/* General text elements */
 .v-card-text {
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -3555,20 +3555,20 @@ a:hover {
   line-height: 1.4;
 }
 
-/* 링크 텍스트 줄바꿈 */
+/* Link text line wrapping */
 a {
   word-break: break-all;
   overflow-wrap: break-word;
 }
 
-/* Alert 텍스트 줄바꿈 */
+/* Alert text line wrapping */
 .v-alert .v-alert__content {
   word-break: keep-all;
   overflow-wrap: break-word;
   line-height: 1.5;
 }
 
-/* 한국어 텍스트 특별 처리 */
+/* Special handling for Korean text */
 .korean-text {
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -3612,7 +3612,7 @@ a {
     font-size: 14px;
   }
 
-  /* 테이블 셀 내용 줄바꿈 */
+  /* Table cell content line wrapping */
   .schedule-table-container .v-col {
     padding: 8px 4px;
     font-size: 0.85rem;
@@ -3625,7 +3625,7 @@ a {
     padding: 2px 8px;
   }
 
-  /* 모바일에서 더 작은 폰트 크기 */
+  /* Smaller font size on mobile */
   .v-card-title {
     font-size: 1.3rem;
   }
@@ -3636,13 +3636,13 @@ a {
 }
 
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* 행 하단 회색 선 */
+  border-bottom: 1px solid #d3d3d3; /* Gray line under each row */
   padding-bottom: 8px;
-  align-items: center; /* 텍스트 수직 정렬 */
+  align-items: center; /* Vertically align text */
 }
 
 .table-header {
-  background-color: #f7f7f7; /* 헤더 행 배경색 */
+  background-color: #f7f7f7; /* Header row background color */
   font-weight: 600;
 }
 
@@ -3653,22 +3653,22 @@ a {
 
 .table-container .table-row .v-col {
   text-align: center;
-  font-size: 15px; /* 표 안의 텍스트 크기 조절 */
+  font-size: 15px; /* Text size inside the table */
 }
 
-/* 모바일에서 표 텍스트 크기 조절 */
+/* Adjust table text size on mobile */
 @media (max-width: 768px) {
   .table-container .table-row .v-col {
-    font-size: 12px; /* 모바일에서 조금 더 작게 */
-    padding-left: 6px !important; /* 모바일에서 좌우 간격만 줄이기 */
+    font-size: 12px; /* Slightly smaller on mobile */
+    padding-left: 6px !important; /* Reduce only the horizontal spacing on mobile */
     padding-right: 6px !important;
   }
   .table-header {
-    font-size: 13px !important; /* 모바일에서 헤더 폰트 크기도 조절 */
+    font-size: 13px !important; /* Also adjust the header font size on mobile */
   }
   .table-container {
-    padding: 0 8px; /* 컨테이너의 좌우 패딩도 줄이기 */
-    margin-top: 24px !important; /* 모바일에서 표 전체의 위아래 여백 늘리기 */
+    padding: 0 8px; /* Also reduce the container horizontal padding */
+    margin-top: 24px !important; /* Increase the vertical margin around the table on mobile */
     margin-bottom: 24px !important;
   }
 }

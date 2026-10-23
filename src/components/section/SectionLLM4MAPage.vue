@@ -104,7 +104,7 @@ export default {
   components: {},
   data() {
     return {
-      expandedPanels: [], // 현재 확장된 패널을 관리하는 배열
+      expandedPanels: [], // Array tracking the currently expanded panels
       sections: [
         {
           items: [
@@ -123,35 +123,35 @@ export default {
 
 <style scoped>
 .dot-list {
-  list-style-type: disc; /* 글머리 기호 스타일 설정 */
+  list-style-type: disc; /* Bullet style */
   font-size: 18px;
-  padding-left: 40px; /* 들여쓰기 값 조정 */
+  padding-left: 40px; /* Adjust indentation */
   line-height: 1.8;
 }
 .text-body {
-  font-size: 18px; /* 텍스트 폰트 크기 조정 */
-  line-height: 1.6; /* 가독성을 위한 줄 간격 조정 */
-  white-space: normal; /* 줄바꿈을 허용 */
-  overflow-wrap: break-word; /* 단어가 줄을 넘지 않도록 단어 단위로 줄바꿈 */
+  font-size: 18px; /* Adjust text font size */
+  line-height: 1.6; /* Line spacing for readability */
+  white-space: normal; /* Allow line wrapping */
+  overflow-wrap: break-word; /* Wrap at word boundaries so words do not overflow the line */
 }
 .v-card-title {
-  white-space: normal; /* 제목에서 줄바꿈을 허용 */
-  overflow-wrap: break-word; /* 단어가 잘리지 않도록 줄바꿈 */
+  white-space: normal; /* Allow line wrapping in titles */
+  overflow-wrap: break-word; /* Wrap so words are not cut off */
 }
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* 회색 줄 */
-  padding-bottom: 8px; /* 줄과 내용 간 여백 */
+  border-bottom: 1px solid #d3d3d3; /* Gray line */
+  padding-bottom: 8px; /* Space between the line and the content */
 }
-/* Notion 스타일의 코드 블록 */
+/* Notion-style code block */
 .code-block {
-  background-color: #f5f5f5; /* 연한 회색 배경 */
-  border: 1px solid #e0e0e0; /* 연한 테두리 */
-  border-radius: 4px; /* 모서리를 둥글게 */
-  padding: 12px; /* 내부 여백 */
-  font-family: "Noto Sans", sans-serif; /* Noto Sans 폰트 */
-  font-size: 14px; /* 적당한 크기의 텍스트 */
-  overflow-x: auto; /* 긴 코드에 스크롤 추가 */
-  white-space: pre-wrap; /* 코드 줄 바꿈 */
+  background-color: #f5f5f5; /* Light gray background */
+  border: 1px solid #e0e0e0; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 12px; /* Inner padding */
+  font-family: "Noto Sans", sans-serif; /* Noto Sans font */
+  font-size: 14px; /* Moderate text size */
+  overflow-x: auto; /* Add scrolling for long code */
+  white-space: pre-wrap; /* Wrap code lines */
 }
 .highlight-text {
   color: #004191;

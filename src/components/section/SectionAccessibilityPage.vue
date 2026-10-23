@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" id="call-for-papers">
     <v-col cols="12" md="8">
-      <!-- Camera-ready paper submission 카드 -->
+      <!-- Camera-ready paper submission card -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold"
           >Manuscript Accessibility</v-card-title
@@ -18,7 +18,7 @@
         <br />
       </v-card>
 
-      <!-- Alt text 카드 -->
+      <!-- Alt text card -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold"
           >Alt text</v-card-title
@@ -208,7 +208,7 @@
         <br />
       </v-card>
 
-      <!-- Color choices 카드 -->
+      <!-- Color choices card -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold"
           >Color choices</v-card-title
@@ -276,7 +276,7 @@
           </li>
         </ul>
 
-        <!-- 새롭게 추가하는 예시 코드 안내 -->
+        <!-- Newly added example code guide -->
         <v-card-title class="text-h5 mt-5 mb-3 font-weight-bold"
           >Music signal processing example</v-card-title
         >
@@ -302,9 +302,9 @@
           colorblind.
         </v-card-text>
 
-        <!-- 이미지 import 예시 -->
+        <!-- Image import example -->
         <div style="text-align: center; margin-top: 1rem">
-          <!-- Vue data()에서 stackedWave 이미지를 불러옴 -->
+          <!-- The stackedWave image is loaded in Vue data() -->
           <img
             :src="stackedWave"
             alt="Stacked partial waveforms with vertical offsets, each in a different color."
@@ -343,7 +343,7 @@ export default {
 
 <style scoped>
 .dot-list {
-  list-style-type: disc; /* 글머리 기호 스타일 */
+  list-style-type: disc; /* Bullet style */
   font-size: 18px;
   padding-left: 40px;
   line-height: 1.8;
@@ -368,7 +368,7 @@ export default {
   border-bottom: 1px solid #d3d3d3;
   padding-bottom: 8px;
 }
-/* Notion 스타일 코드 블록 */
+/* Notion-style code block */
 .code-block {
   background-color: #f5f5f5;
   border: 1px solid #e0e0e0;

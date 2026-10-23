@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed, inject } from 'vue'; // inject Ãß°¡
+import { defineProps, computed, inject } from 'vue'; // added inject
 
 
 const props = defineProps({

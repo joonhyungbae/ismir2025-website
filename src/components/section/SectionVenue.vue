@@ -4,7 +4,7 @@
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">Venue</v-card-title>
         <v-card-text class="text-body">
-          <!-- KAIST 캠퍼스 이미지 -->
+          <!-- KAIST campus image -->
           <v-row class="my-4">
             <v-col cols="12">
               <v-img
@@ -64,7 +64,7 @@
           Daejeon, approximately 150 kilometers south of Seoul.
           <br /><br />
 
-          <!-- 두 venue를 카드로 구성 -->
+          <!-- Venues laid out as cards -->
           <v-row class="my-4">
             <!-- Tutorial Sessions Venue -->
             <v-col cols="12" lg="6">
@@ -76,14 +76,14 @@
                   September 21 @ KAIST Creative Learning Building E11
                 </v-card-subtitle>
 
-                <!-- E11 이미지 -->
+                <!-- E11 image -->
                 <v-img
                   :src="require('@/assets/E11.png')"
                   alt="Creative Learning Building E11"
                   class="venue-card-image mb-3"
                 ></v-img>
 
-                <!-- E11 구글맵 -->
+                <!-- E11 Google Map -->
                 <div class="map-container mb-2">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3213.8!2d127.3625834!3d36.3703695!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35654bc9c84e5adb%3A0xf0cf3620fc28fc1d!2sCreative%20Learning%20Building%20E11!5e0!3m2!1sen!2skr!4v1635000000000!5m2!1sen!2skr"
@@ -110,14 +110,14 @@
                   September 22-25 @ KAIST Main Auditorium E15
                 </v-card-subtitle>
 
-                <!-- E15 이미지 -->
+                <!-- E15 image -->
                 <v-img
                   :src="require('@/assets/E15.webp')"
                   alt="Main auditorium E15"
                   class="venue-card-image mb-3"
                 ></v-img>
 
-                <!-- E15 구글맵 -->
+                <!-- E15 Google Map -->
                 <div class="map-container mb-2">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3213.7!2d127.3629259!3d36.3720843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35654bc98a6db1a1%3A0x8f5575e3fc5de4e7!2sKAIST%20E15%20%EB%8C%80%EA%B0%95%EB%8B%B9%2C%20%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%9C%A0%EC%84%B1%EA%B5%AC%20%EC%98%A8%EC%B2%9C2%EB%8F%99!5e0!3m2!1sko!2skr!4v1735000000000!5m2!1sko!2skr"
@@ -144,14 +144,14 @@
                   Sep 21 (Sun) 18:30 - 21:00 @ Golfzon Zoimaru
                 </v-card-subtitle>
 
-                <!-- Zoimaru 이미지 -->
+                <!-- Zoimaru image -->
                 <v-img
                   :src="require('@/assets/Venue/zoimaru.jpg')"
                   alt="Golfzon Zoimaru"
                   class="venue-card-image mb-3"
                 ></v-img>
 
-                <!-- Zoimaru 구글맵 -->
+                <!-- Zoimaru Google Map -->
                 <div class="map-container mb-2">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2672.5016382088193!2d127.38668181435982!3d36.374281945767635!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3565498f9d9e5fc7%3A0xee322d1ac4eefeb5!2z6rOo7ZSE7KG0IOyhsOydtOuniOujqA!5e0!3m2!1sko!2skr!4v1755760756061!5m2!1sko!2skr"
@@ -178,14 +178,14 @@
                   Sep 24 (Wed) 19:30 - 22:00 @ ICC Hotel
                 </v-card-subtitle>
 
-                <!-- ICC Hotel 이미지 -->
+                <!-- ICC Hotel image -->
                 <v-img
                   :src="require('@/assets/ICC_1.jpg')"
                   alt="ICC Hotel"
                   class="venue-card-image mb-3"
                 ></v-img>
 
-                <!-- ICC Hotel 구글맵 -->
+                <!-- ICC Hotel Google Map -->
                 <div class="map-container mb-2">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3213.4!2d127.3926565!3d36.3769613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3565498fe8b3e435%3A0x4601bcf4eb4f2181!2s%ED%98%B8%ED%85%94ICC!5e0!3m2!1sko!2skr!4v1735000000000!5m2!1sko!2skr"
@@ -231,34 +231,34 @@ export default {
 
 <style scoped>
 .dot-list {
-  list-style-type: disc; /* 글머리 기호 스타일 설정 */
+  list-style-type: disc; /* Bullet style */
   font-size: 18px;
-  padding-left: 40px; /* 들여쓰기 값 조정 */
+  padding-left: 40px; /* Indentation */
   line-height: 1.8;
 }
 .text-body {
-  font-size: 18px; /* 텍스트 폰트 크기 조정 */
-  line-height: 1.6; /* 가독성을 위한 줄 간격 조정 */
-  white-space: normal; /* 줄바꿈을 허용 */
-  overflow-wrap: break-word; /* 단어가 줄을 넘지 않도록 단어 단위로 줄바꿈 */
+  font-size: 18px; /* Text font size */
+  line-height: 1.6; /* Line spacing for readability */
+  white-space: normal; /* Allow line wrapping */
+  overflow-wrap: break-word; /* Wrap at word boundaries so words do not overflow the line */
 }
 .v-card-title {
-  white-space: normal; /* 제목에서 줄바꿈을 허용 */
-  overflow-wrap: break-word; /* 단어가 잘리지 않도록 줄바꿈 */
+  white-space: normal; /* Allow line wrapping in titles */
+  overflow-wrap: break-word; /* Wrap so words are not cut off */
 }
 .styled-row {
-  border-bottom: 1px solid #d3d3d3; /* 회색 줄 */
-  padding-bottom: 8px; /* 줄과 내용 간 여백 */
+  border-bottom: 1px solid #d3d3d3; /* Gray line */
+  padding-bottom: 8px; /* Space between the line and the content */
 }
-/* Notion 스타일의 코드 블록 */
+/* Notion-style code block */
 .code-block {
-  background-color: #f5f5f5; /* 연한 회색 배경 */
-  border: 1px solid #e0e0e0; /* 연한 테두리 */
-  padding: 12px; /* 내부 여백 */
-  font-family: "Noto Sans", sans-serif; /* Noto Sans 폰트 */
-  font-size: 14px; /* 적당한 크기의 텍스트 */
-  overflow-x: auto; /* 긴 코드에 스크롤 추가 */
-  white-space: pre-wrap; /* 코드 줄 바꿈 */
+  background-color: #f5f5f5; /* Light gray background */
+  border: 1px solid #e0e0e0; /* Light border */
+  padding: 12px; /* Inner padding */
+  font-family: "Noto Sans", sans-serif; /* Noto Sans font */
+  font-size: 14px; /* Moderate text size */
+  overflow-x: auto; /* Scroll for long code */
+  white-space: pre-wrap; /* Wrap code lines */
 }
 .highlight-text {
   color: #004191;

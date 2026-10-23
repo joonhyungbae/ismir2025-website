@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from 'vue'; // inject Ãß°¡
+import { defineProps, ref } from 'vue'; // added inject
 
 
   const drawer = ref(false)

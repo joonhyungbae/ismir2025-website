@@ -2,7 +2,7 @@
   <v-container fluid class="pa-0">
 
 
-    <!-- 데스크톱 PDF 뷰어 -->
+    <!-- Desktop PDF viewer -->
     <v-row v-if="!isMobile" no-gutters>
       <v-col cols="12">
         <div class="pdf-desktop-container">
@@ -36,11 +36,11 @@
       </v-col>
     </v-row>
 
-    <!-- 모바일 PDF 뷰어 -->
+    <!-- Mobile PDF viewer -->
     <v-row v-if="isMobile && showMobilePdf" no-gutters class="mobile-fullscreen">
       <v-col cols="12">
         <div class="mobile-pdf-container">
-          <!-- PDF 캔버스 -->
+          <!-- PDF canvas -->
           <div class="pdf-canvas-container">
             <canvas
               ref="pdfCanvas"
@@ -50,7 +50,7 @@
               @touchend="onTouchEnd"
             ></canvas>
             
-            <!-- 페이지 네비게이션 오버레이 -->
+            <!-- Page navigation overlay -->
             <div class="page-navigation-overlay">
               <v-btn
                 icon="mdi-download"
@@ -86,7 +86,7 @@
             </div>
           </div>
           
-          <!-- 로딩 표시 -->
+          <!-- Loading indicator -->
           <v-overlay
             :model-value="isLoading"
             class="align-center justify-center"
@@ -101,7 +101,7 @@
       </v-col>
     </v-row>
 
-    <!-- 모바일용 안내 메시지 (PDF 뷰어가 닫혀있을 때) -->
+    <!-- Mobile notice message (shown when the PDF viewer is closed) -->
     <v-row v-if="isMobile && !showMobilePdf" class="px-4" justify="center">
       <v-col cols="12">
         <v-card class="pa-6 text-center" color="grey-lighten-5">
@@ -150,7 +150,7 @@ const desktopIframe = ref(null)
 const touchStartX = ref(0)
 const touchStartY = ref(0)
 
-// PDF.js 동적 로딩
+// Dynamically load PDF.js
 const loadPdfJs = async () => {
   if (window.pdfjsLib) return window.pdfjsLib
 
@@ -168,7 +168,7 @@ const loadPdfJs = async () => {
 
 
 
-// 모바일 PDF 로드
+// Load the PDF on mobile
 const loadMobilePdf = async () => {
   if (!pdfCanvas.value) return
   
@@ -189,7 +189,7 @@ const loadMobilePdf = async () => {
   }
 }
 
-// 페이지 렌더링
+// Render a page
 const renderPage = async (pageNum) => {
   if (!pdfDoc || !pdfCanvas.value) return
   
@@ -200,8 +200,8 @@ const renderPage = async (pageNum) => {
     const canvas = pdfCanvas.value
     const context = canvas.getContext('2d')
     
-    // 모바일 화면에 맞는 스케일 계산
-    const containerWidth = canvas.parentElement.clientWidth - 32 // padding 고려
+    // Compute a scale that fits the mobile screen
+    const containerWidth = canvas.parentElement.clientWidth - 32 // Account for padding
     const viewport = page.getViewport({ scale: 1 })
     const scale = containerWidth / viewport.width
     const scaledViewport = page.getViewport({ scale })
@@ -214,7 +214,7 @@ const renderPage = async (pageNum) => {
       viewport: scaledViewport
     }
     
-    // 이전 렌더링 작업 취소
+    // Cancel the previous render task
     if (renderTask) {
       renderTask.cancel()
     }
@@ -232,7 +232,7 @@ const renderPage = async (pageNum) => {
   }
 }
 
-// 페이지 네비게이션
+// Page navigation
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     renderPage(currentPage.value + 1)
@@ -245,7 +245,7 @@ const previousPage = () => {
   }
 }
 
-// 터치 이벤트 핸들러
+// Touch event handlers
 const onTouchStart = (event) => {
   const touch = event.touches[0]
   touchStartX.value = touch.clientX
@@ -253,7 +253,7 @@ const onTouchStart = (event) => {
 }
 
 const onTouchMove = (event) => {
-  event.preventDefault() // 스크롤 방지
+  event.preventDefault() // Prevent scrolling
 }
 
 const onTouchEnd = (event) => {
@@ -261,37 +261,37 @@ const onTouchEnd = (event) => {
   const deltaX = touch.clientX - touchStartX.value
   const deltaY = Math.abs(touch.clientY - touchStartY.value)
   
-  // 수평 스와이프가 수직 스와이프보다 클 때만 페이지 변경
+  // Change page only when the horizontal swipe exceeds the vertical swipe
   if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
     if (deltaX > 0) {
-      previousPage() // 오른쪽 스와이프 = 이전 페이지
+      previousPage() // Swipe right = previous page
     } else {
-      nextPage() // 왼쪽 스와이프 = 다음 페이지
+      nextPage() // Swipe left = next page
     }
   }
 }
 
 
 
-// iframe 로드 완료
+// iframe finished loading
 const onIframeLoad = () => {
   console.log('Desktop PDF iframe loaded')
 }
 
-// 모바일에서 자동으로 PDF 로드
+// Automatically load the PDF on mobile
 watch(isMobile, async (newValue) => {
   if (newValue) {
-    // 모바일로 전환되면 PDF 자동 로드
+    // Auto-load the PDF when switching to mobile
     showMobilePdf.value = true
     await nextTick()
     await loadMobilePdf()
   } else {
-    // 데스크톱으로 전환되면 모바일 PDF 닫기
+    // Close the mobile PDF when switching to desktop
     showMobilePdf.value = false
   }
 }, { immediate: true })
 
-// 컴포넌트 언마운트 시 정리
+// Clean up on component unmount
 onUnmounted(() => {
   if (renderTask) {
     renderTask.cancel()
@@ -300,14 +300,14 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* 데스크톱 PDF 컨테이너 */
+/* Desktop PDF container */
 .pdf-desktop-container {
   height: 100vh;
   width: 100%;
   background: white;
 }
 
-/* 모바일 전체화면 */
+/* Mobile full screen */
 .mobile-fullscreen {
   height: 100vh;
   position: fixed;
@@ -319,7 +319,7 @@ onUnmounted(() => {
   background: white;
 }
 
-/* 모바일 PDF 컨테이너 */
+/* Mobile PDF container */
 .mobile-pdf-container {
   height: 100vh;
   width: 100%;
@@ -341,10 +341,10 @@ onUnmounted(() => {
   max-width: 100%;
   max-height: 100%;
   background: white;
-  touch-action: pan-x; /* 수평 스와이프만 허용 */
+  touch-action: pan-x; /* Allow horizontal swipes only */
 }
 
-/* 페이지 네비게이션 오버레이 */
+/* Page navigation overlay */
 .page-navigation-overlay {
   position: absolute;
   bottom: 20px;
@@ -379,19 +379,19 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.2) !important;
 }
 
-/* 버튼 간격 조정 */
+/* Button spacing */
 .gap-2 > * {
   margin: 4px;
 }
 
-/* 반응형 조정 */
+/* Responsive adjustments */
 @media (max-width: 600px) {
   .pdf-desktop-container {
     height: 100vh;
   }
 }
 
-/* 로딩 오버레이 */
+/* Loading overlay */
 .v-overlay {
   background: rgba(44, 44, 44, 0.8);
 }

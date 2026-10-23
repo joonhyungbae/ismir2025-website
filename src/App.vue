@@ -1,25 +1,25 @@
 <template>
   <v-app>
-    <!-- AppbarPage 컴포넌트 사용 -->
+    <!-- AppbarPage component -->
     <AppbarPage />
     <v-main>
       <router-view />
     </v-main>
-    <!-- Footer 컴포넌트 추가 -->
+    <!-- Footer component -->
     <FooterPage />
   </v-app>
 </template>
 
 <script>
-import FooterPage from "@/components/FooterPage.vue"; // Footer 컴포넌트 경로에 맞게 수정하세요
-import AppbarPage from "@/components/AppbarPage.vue"; // AppbarPage 컴포넌트 경로에 맞게 수정하세요
+import FooterPage from "@/components/FooterPage.vue"; // Adjust to match the Footer component path
+import AppbarPage from "@/components/AppbarPage.vue"; // Adjust to match the AppbarPage component path
 
 export default {
   name: "App",
 
   components: {
     FooterPage,
-    AppbarPage, // AppbarPage를 컴포넌트로 등록
+    AppbarPage, // Register AppbarPage as a component
   },
 
   data() {
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style>
-/* 전역 스타일 - 모든 요소에 Noto Sans 폰트 적용 */
+/* Global styles - apply the Noto Sans font to all elements */
 * {
   font-family: "Noto Sans", sans-serif !important;
 }
@@ -50,7 +50,7 @@ body {
   font-family: "Noto Sans", sans-serif !important;
 }
 
-/* Vuetify 컴포넌트들에도 폰트 적용 */
+/* Apply the font to Vuetify components as well */
 .v-btn,
 .v-card,
 .v-list,
@@ -60,7 +60,7 @@ body {
   font-family: "Noto Sans", sans-serif !important;
 }
 
-/* 텍스트 요소들 */
+/* Text elements */
 h1,
 h2,
 h3,

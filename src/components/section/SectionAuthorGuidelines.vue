@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" id="call-for-papers">
     <v-col cols="12" md="8">
-      <!-- Submission Procedure 카드 -->
+      <!-- Submission Procedure card -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Submission Procedure
@@ -54,7 +54,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- Submission Requirements 카드 -->
+      <!-- Submission Requirements card -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Submission Requirements
@@ -155,7 +155,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- manuscript accessibility 카드 -->
+      <!-- Manuscript accessibility card -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h4 mb-3 font-weight-bold">
           Manuscript Accessibility
@@ -168,7 +168,7 @@
           </span>
         </v-card-text>
 
-        <!-- Alt text 카드 -->
+        <!-- Alt text card -->
         <v-card-title class="text-h5 mb-3 font-weight-bold"
           >Alt text</v-card-title
         >
@@ -186,7 +186,7 @@
           >
         </v-card-text>
 
-        <!-- Alt text 베스트 프랙티스 -->
+        <!-- Alt text best practices -->
         <ul class="dot-list">
           <li>
             <strong>Keep it concise, but complete:</strong>
@@ -233,7 +233,7 @@
         </v-card-text>
 
         <ol class="decimal-list">
-          <!-- LaTeX Alt Text 가이드 -->
+          <!-- LaTeX Alt Text guide -->
           <li>
             <strong>LaTeX (TeXLive 2024)</strong>
             <ol class="decimal-list">
@@ -317,7 +317,7 @@
             </ol>
           </li>
 
-          <!-- Acrobat Alt Text 가이드 -->
+          <!-- Acrobat Alt Text guide -->
           <li>
             <strong>Adobe Acrobat</strong>
             <ol class="decimal-list">
@@ -348,7 +348,7 @@
           </li>
           <br />
 
-          <!-- Word Alt Text 가이드 -->
+          <!-- Word Alt Text guide -->
           <li>
             <strong>Microsoft Word</strong>
             <ol class="decimal-list">
@@ -472,7 +472,7 @@
         <v-divider></v-divider>
       </v-card>
 
-      <!-- Color choices 카드 -->
+      <!-- Color choices card -->
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-title class="text-h5 mb-3 font-weight-bold">
           Color choices
@@ -533,7 +533,7 @@
           </li>
         </ul>
 
-        <!-- 새롭게 추가하는 예시 코드 안내 -->
+        <!-- Newly added example code guide -->
         <v-card-title class="text-h6 mt-5 mb-3 font-weight-bold"
           >Music signal processing example</v-card-title
         >
@@ -558,9 +558,9 @@
           It helps ensure good contrast, especially for those who may be
           colorblind.
 
-          <!-- 이미지 import 예시 -->
+          <!-- Image import example -->
           <div style="text-align: center; margin-top: 1rem">
-            <!-- Vue data()에서 stackedWave 이미지를 불러옴 -->
+            <!-- The stackedWave image is loaded in Vue data() -->
             <img
               :src="stackedWave"
               alt="Stacked partial waveforms with vertical offsets, each in a different color."
@@ -614,7 +614,7 @@ export default {
   data() {
     return {
       stackedWave,
-      expandedPanels: [], // 현재 확장된 패널을 관리하는 배열
+      expandedPanels: [], // Array tracking the currently expanded panels
       sections: [
         {
           items: [
@@ -657,7 +657,7 @@ export default {
   border-bottom: 1px solid #d3d3d3;
   padding-bottom: 8px;
 }
-/* Notion 스타일의 코드 블록 */
+/* Notion-style code block */
 .code-block {
   background-color: #f5f5f5;
   border: 1px solid #e0e0e0;

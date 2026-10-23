@@ -757,7 +757,7 @@
 </template>
 
 <script setup>
-// import { useClipboard } from "@vueuse/core"; // 더 이상 사용하지 않음
+// import { useClipboard } from "@vueuse/core"; // No longer used
 import kaistLogo from "@/assets/sponserLogos/fhd/kaist.webp";
 import sogangLogo from "@/assets/sponserLogos/fhd/sogang.webp";
 import dtoLogo from "@/assets/sponserLogos/fhd/daejeonTourismOrganization.webp";
@@ -793,7 +793,7 @@ import audaiLogo from "@/assets/logo/AudAi.png";
 import piascoreLogo from "@/assets/logo/piascore.png";
 import neutoneLogo from "@/assets/logo/neutone.png"; // In progress
 
-// 이메일 관련 함수들은 더 이상 필요하지 않음 (mailto 링크 사용)
+// Email helper functions are no longer needed (mailto links are used instead)
 </script>
 
 <style scoped>

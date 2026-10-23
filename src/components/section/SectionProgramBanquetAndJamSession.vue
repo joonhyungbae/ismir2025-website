@@ -276,7 +276,7 @@ export default {
     scrollToSection(sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
-        const offset = 100; // 상단에서 100px 아래로 스크롤
+        const offset = 100; // Scroll to 100px below the top
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -302,37 +302,37 @@ export default {
   margin: 0 auto;
 }
 
-/* 가로형 이미지 (1440*792) - Korean Folk Games */
+/* Landscape image (1440*792) - Korean Folk Games */
 .horizontal-image {
   width: 100%;
   max-height: 500px;
 }
 
-/* 세로형 정사각형에 가까운 이미지 (1080*1152) - Traditional Tavern */
+/* Near-square portrait image (1080*1152) - Traditional Tavern */
 .tavern-image {
   width: 100%;
   max-height: 600px;
 }
 
-/* 세로형 이미지 (720*1152) - Cultural Learning Activities */
+/* Portrait image (720*1152) - Cultural Learning Activities */
 .square-vertical-image {
   width: 100%;
   max-height: 650px;
 }
 
-/* 좁은 세로형 이미지 (360*1080) - Traditional Instruments */
+/* Narrow portrait image (360*1080) - Traditional Instruments */
 .narrow-vertical-image {
   width: 100%;
   max-height: 700px;
 }
 
-/* Banquet 이미지 스타일 */
+/* Banquet image style */
 .banquet-image {
   width: 100%;
   max-height: 500px;
 }
 
-/* Jam Session 이미지 스타일 */
+/* Jam Session image style */
 .jam-session-image {
   width: 100%;
   max-height: 500px;

@@ -1,9 +1,9 @@
 /**
- * ICS (iCalendar) 파일 생성 및 다운로드 서비스
- * ISMIR 2025 프로그램 스케줄용
+ * ICS (iCalendar) file generation and download service
+ * For the ISMIR 2025 program schedule
  */
 
-// ISMIR 2025 기본 정보 (필요시 사용)
+// ISMIR 2025 basic info (used where needed)
 // const CONFERENCE_INFO = {
 //   name: 'ISMIR 2025',
 //   location: 'KAIST, Daejeon, South Korea',
@@ -13,7 +13,7 @@
 //   month: 9, // September (0-based: 8, but we'll use 9 for clarity)
 // };
 
-// 날짜별 매핑 (9/20 = 2025-09-20)
+// Date mapping (9/20 = 2025-09-20)
 const DATE_MAPPING = {
   '9/20': new Date(2025, 8, 20), // September 20, 2025
   '9/21': new Date(2025, 8, 21), // September 21, 2025
@@ -24,7 +24,7 @@ const DATE_MAPPING = {
   '9/26': new Date(2025, 8, 26), // September 26, 2025
 };
 
-// 컬럼 인덱스별 날짜 매핑 (시간 컬럼 제외)
+// Column index to date mapping (excluding the time column)
 const COLUMN_TO_DATE = {
   1: '9/20', // Satellite
   2: '9/21', // Tutorial
@@ -36,7 +36,7 @@ const COLUMN_TO_DATE = {
   8: '9/26', // Satellite (Sogang)
 };
 
-// 장소 정보 매핑 (SectionVenue.vue와 SectionCampusMapPage.vue 기반)
+// Venue info mapping (based on SectionVenue.vue and SectionCampusMapPage.vue)
 const LOCATION_MAPPING = {
   1: 'KAIST, Daejeon, South Korea', // 9/20 Satellite
   2: 'KAIST Creative Learning Building E11, Daejeon, South Korea', // 9/21 Tutorial
@@ -48,7 +48,7 @@ const LOCATION_MAPPING = {
   8: 'Sogang University, Seoul, South Korea', // 9/26 Sogang Satellite
 };
 
-// 상세 장소 정보 매핑 (건물별 구체적인 룸 정보) - 향후 확장을 위한 준비
+// Detailed venue mapping (specific room info per building) - prepared for future extension
 // eslint-disable-next-line no-unused-vars
 const DETAILED_LOCATION_MAPPING = {
   // Tutorial Sessions (9/21 @ E11)
@@ -87,28 +87,28 @@ const DETAILED_LOCATION_MAPPING = {
   }
 };
 
-// Google Maps URL 매핑 (SectionVenue.vue의 실제 사용 가능한 링크)
+// Google Maps URL mapping (working links from SectionVenue.vue)
 const GOOGLE_MAPS_URLS = {
-  1: 'https://maps.app.goo.gl/5RB8d6FcahjnnGgg9', // 9/20 KAIST 종합 지도
+  1: 'https://maps.app.goo.gl/5RB8d6FcahjnnGgg9', // 9/20 KAIST campus map
   2: 'https://maps.google.com/?q=KAIST+Creative+Learning+Building+E11,+Daejeon,+South+Korea', // 9/21 E11
-  3: 'https://maps.google.com/?q=KAIST+E15+대강당,+대전광역시+유성구', // 9/22-25 E15
-  4: 'https://maps.google.com/?q=KAIST+E15+대강당,+대전광역시+유성구', // 9/23 E15
-  5: 'https://maps.google.com/?q=KAIST+E15+대강당,+대전광역시+유성구', // 9/24 E15
-  6: 'https://maps.google.com/?q=KAIST+E15+대강당,+대전광역시+유성구', // 9/25 E15
-  7: 'https://maps.app.goo.gl/5RB8d6FcahjnnGgg9', // 9/26 KAIST 종합 지도
+  3: 'https://maps.google.com/?q=KAIST+E15+%EB%8C%80%EA%B0%95%EB%8B%B9,+%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C+%EC%9C%A0%EC%84%B1%EA%B5%AC', // 9/22-25 E15
+  4: 'https://maps.google.com/?q=KAIST+E15+%EB%8C%80%EA%B0%95%EB%8B%B9,+%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C+%EC%9C%A0%EC%84%B1%EA%B5%AC', // 9/23 E15
+  5: 'https://maps.google.com/?q=KAIST+E15+%EB%8C%80%EA%B0%95%EB%8B%B9,+%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C+%EC%9C%A0%EC%84%B1%EA%B5%AC', // 9/24 E15
+  6: 'https://maps.google.com/?q=KAIST+E15+%EB%8C%80%EA%B0%95%EB%8B%B9,+%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C+%EC%9C%A0%EC%84%B1%EA%B5%AC', // 9/25 E15
+  7: 'https://maps.app.goo.gl/5RB8d6FcahjnnGgg9', // 9/26 KAIST campus map
   8: 'https://maps.google.com/?q=Sogang+University,+Seoul,+South+Korea', // 9/26 Sogang
 };
 
-// 특별 이벤트별 Google Maps URL
+// Google Maps URLs for special events
 const SPECIAL_EVENT_MAPS = {
-  'welcome_reception': 'https://maps.google.com/?q=골프존+조이마루,+대전',
-  'banquet': 'https://maps.google.com/?q=호텔ICC,+대전',
-  'k_culture': 'https://maps.google.com/?q=KAIST+E15+대강당,+대전광역시+유성구',
-  'korean_concert': 'https://maps.google.com/?q=KAIST+E15+대강당,+대전광역시+유성구',
+  'welcome_reception': 'https://maps.google.com/?q=%EA%B3%A8%ED%94%84%EC%A1%B4+%EC%A1%B0%EC%9D%B4%EB%A7%88%EB%A3%A8,+%EB%8C%80%EC%A0%84',
+  'banquet': 'https://maps.google.com/?q=%ED%98%B8%ED%85%94ICC,+%EB%8C%80%EC%A0%84',
+  'k_culture': 'https://maps.google.com/?q=KAIST+E15+%EB%8C%80%EA%B0%95%EB%8B%B9,+%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C+%EC%9C%A0%EC%84%B1%EA%B5%AC',
+  'korean_concert': 'https://maps.google.com/?q=KAIST+E15+%EB%8C%80%EA%B0%95%EB%8B%B9,+%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C+%EC%9C%A0%EC%84%B1%EA%B5%AC',
   'hcmir25': 'https://maps.app.goo.gl/btnbicuVZpe12Cd49'
 };
 
-// 특별 이벤트 실제 시간 매핑 (30분 단위 스케줄의 한계 극복)
+// Actual time mapping for special events (works around the 30-minute schedule grid)
 const SPECIAL_EVENT_TIMES = {
   'hcmir25': {
     date: '9/20',
@@ -134,7 +134,7 @@ const SPECIAL_EVENT_TIMES = {
     startTime: '18:30',
     endTime: '21:30',
     location: 'Golfzon Zoimaru, Daejeon, South Korea',
-    googleMapUrl: 'https://maps.google.com/?q=골프존+조이마루,+대전'
+    googleMapUrl: 'https://maps.google.com/?q=%EA%B3%A8%ED%94%84%EC%A1%B4+%EC%A1%B0%EC%9D%B4%EB%A7%88%EB%A3%A8,+%EB%8C%80%EC%A0%84'
   },
   'registration_921': {
     date: '9/21',
@@ -148,7 +148,7 @@ const SPECIAL_EVENT_TIMES = {
     endTime: '14:00',
     location: 'KAIST Creative Learning Building E11, Daejeon, South Korea'
   },
-  // 9/22 Conference Day 1 이벤트들
+  // 9/22 Conference Day 1 events
   'registration_922': {
     date: '9/22',
     startTime: '07:00',
@@ -209,7 +209,7 @@ const SPECIAL_EVENT_TIMES = {
     endTime: '20:30',
     location: 'KAIST Main Auditorium E15, Daejeon, South Korea'
   },
-  // 9/23 Conference Day 2 이벤트들
+  // 9/23 Conference Day 2 events
   'registration_923': {
     date: '9/23',
     startTime: '08:00',
@@ -270,7 +270,7 @@ const SPECIAL_EVENT_TIMES = {
     endTime: '21:30',
     location: 'KAIST Main Auditorium E15, Daejeon, South Korea'
   },
-  // 9/24 Conference Day 3 이벤트들
+  // 9/24 Conference Day 3 events
   'registration_924': {
     date: '9/24',
     startTime: '08:00',
@@ -319,7 +319,7 @@ const SPECIAL_EVENT_TIMES = {
     endTime: '18:30',
     location: 'KAIST Main Auditorium E15, Daejeon, South Korea'
   },
-  // 9/25 Conference Day 4 이벤트들
+  // 9/25 Conference Day 4 events
   'registration_925': {
     date: '9/25',
     startTime: '08:00',
@@ -374,7 +374,7 @@ const SPECIAL_EVENT_TIMES = {
     endTime: '18:30',
     location: 'KAIST Main Auditorium E15, Daejeon, South Korea'
   },
-  // 9/26 Workshop Day 이벤트들
+  // 9/26 Workshop Day events
   'llm4ma_workshop_926': {
     date: '9/26',
     startTime: '09:00',
@@ -392,7 +392,7 @@ const SPECIAL_EVENT_TIMES = {
     startTime: '19:30', 
     endTime: '22:00',
     location: 'ICC Hotel, Daejeon, South Korea',
-    googleMapUrl: 'https://maps.google.com/?q=호텔ICC,+대전'
+    googleMapUrl: 'https://maps.google.com/?q=%ED%98%B8%ED%85%94ICC,+%EB%8C%80%EC%A0%84'
   },
   'rencon_925': {
     date: '9/25',
@@ -403,27 +403,27 @@ const SPECIAL_EVENT_TIMES = {
 };
 
 /**
- * 특별 이벤트 감지 및 실제 시간 정보 반환
- * @param {string} eventTitle - 이벤트 제목
- * @param {number} columnIndex - 컬럼 인덱스
- * @returns {Object|null} 특별 이벤트 정보 또는 null
+ * Detect special events and return their actual time info
+ * @param {string} eventTitle - Event title
+ * @param {number} columnIndex - Column index
+ * @returns {Object|null} Special event info, or null
  */
 function getSpecialEventTime(eventTitle, columnIndex) {
-  // 윗첨자 제거 (¹²³⁴⁵⁶⁷⁸⁹⁰) 후 정규화
+  // Normalize after removing superscripts (¹²³⁴⁵⁶⁷⁸⁹⁰)
   const normalizedTitle = eventTitle
     .toLowerCase()
-    .replace(/[¹²³⁴⁵⁶⁷⁸⁹⁰]/g, '') // 윗첨자 제거
+    .replace(/[¹²³⁴⁵⁶⁷⁸⁹⁰]/g, '') // Remove superscripts
     .replace(/\n/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
   
-  // HCMIR25 이벤트
+  // HCMIR25 event
   if (normalizedTitle.includes('hcmir') && columnIndex === 1) {
-    console.log('HCMIR25 특별 이벤트 감지됨:', eventTitle, 'columnIndex:', columnIndex);
+    console.log('HCMIR25 special event detected:', eventTitle, 'columnIndex:', columnIndex);
     return SPECIAL_EVENT_TIMES.hcmir25;
   }
   
-  // Tutorial 세션들
+  // Tutorial sessions
   if (normalizedTitle.includes('tutorial') && columnIndex === 2) {
     if (normalizedTitle.includes('t1') || normalizedTitle.includes('t2') || normalizedTitle.includes('t3')) {
       return SPECIAL_EVENT_TIMES.tutorial_morning;
@@ -432,17 +432,17 @@ function getSpecialEventTime(eventTitle, columnIndex) {
     }
   }
   
-  // 9/21 Registration 이벤트 (07:00-09:00 통합)
+  // 9/21 Registration event (merged 07:00-09:00)
   if (normalizedTitle.includes('registration') && columnIndex === 2) {
     return SPECIAL_EVENT_TIMES.registration_921;
   }
   
-  // 9/21 Lunch 이벤트
+  // 9/21 Lunch event
   if (normalizedTitle.includes('lunch') && columnIndex === 2) {
     return SPECIAL_EVENT_TIMES.lunch_921;
   }
   
-  // 9/22 Conference Day 1 이벤트들
+  // 9/22 Conference Day 1 events
   if (columnIndex === 3) {
     // Registration
     if (normalizedTitle.includes('registration')) {
@@ -486,7 +486,7 @@ function getSpecialEventTime(eventTitle, columnIndex) {
     }
   }
   
-  // 9/23 Conference Day 2 이벤트들
+  // 9/23 Conference Day 2 events
   if (columnIndex === 4) {
     // Registration
     if (normalizedTitle.includes('registration')) {
@@ -530,7 +530,7 @@ function getSpecialEventTime(eventTitle, columnIndex) {
     }
   }
   
-  // 9/24 Conference Day 3 이벤트들
+  // 9/24 Conference Day 3 events
   if (columnIndex === 5) {
     // Registration
     if (normalizedTitle.includes('registration')) {
@@ -566,7 +566,7 @@ function getSpecialEventTime(eventTitle, columnIndex) {
     }
   }
   
-  // 9/25 Conference Day 4 이벤트들
+  // 9/25 Conference Day 4 events
   if (columnIndex === 6) {
     // Registration
     if (normalizedTitle.includes('registration')) {
@@ -606,7 +606,7 @@ function getSpecialEventTime(eventTitle, columnIndex) {
     }
   }
   
-  // 9/26 Workshop Day 이벤트들
+  // 9/26 Workshop Day events
   if (columnIndex === 7) {
     // LLM4MA Workshop
     if (normalizedTitle.includes('llm4ma')) {
@@ -640,8 +640,8 @@ function getSpecialEventTime(eventTitle, columnIndex) {
 }
 
 /**
- * 시간 문자열을 파싱하여 시작/종료 시간을 반환
- * @param {string} timeString - "09:00 - 09:30" 형식의 시간 문자열
+ * Parse a time string and return the start/end times
+ * @param {string} timeString - Time string in "09:00 - 09:30" format
  * @returns {Object} {startHour, startMinute, endHour, endMinute}
  */
 function parseTimeString(timeString) {
@@ -659,18 +659,18 @@ function parseTimeString(timeString) {
 }
 
 /**
- * Date 객체를 ICS 형식의 날짜 문자열로 변환 (UTC)
- * @param {Date} date - 변환할 Date 객체
- * @returns {string} YYYYMMDDTHHMMSSZ 형식의 문자열
+ * Convert a Date object to an ICS-format date string (UTC)
+ * @param {Date} date - Date object to convert
+ * @returns {string} String in YYYYMMDDTHHMMSSZ format
  */
 function formatICSDate(date) {
   return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
 }
 
 /**
- * Date 객체를 ICS 형식의 로컬 날짜 문자열로 변환 (시간대 정보 없음)
- * @param {Date} date - 변환할 Date 객체
- * @returns {string} YYYYMMDDTHHMMSS 형식의 문자열 (Z 없음)
+ * Convert a Date object to an ICS-format local date string (no timezone info)
+ * @param {Date} date - Date object to convert
+ * @returns {string} String in YYYYMMDDTHHMMSS format (no Z)
  */
 function formatICSLocalDate(date) {
   const year = date.getFullYear();
@@ -684,11 +684,11 @@ function formatICSLocalDate(date) {
 }
 
 /**
- * 고유한 UID 생성
- * @param {string} eventTitle - 이벤트 제목
- * @param {string} dateStr - 날짜 문자열
- * @param {string} timeStr - 시간 문자열
- * @returns {string} 고유한 UID
+ * Generate a unique UID
+ * @param {string} eventTitle - Event title
+ * @param {string} dateStr - Date string
+ * @param {string} timeStr - Time string
+ * @returns {string} Unique UID
  */
 function generateUID(eventTitle, dateStr, timeStr) {
   const cleanTitle = eventTitle.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
@@ -697,22 +697,22 @@ function generateUID(eventTitle, dateStr, timeStr) {
 }
 
 /**
- * 이벤트 제목 정리 및 향상
- * @param {string} rawTitle - 원본 제목
- * @returns {string} 정리된 제목
+ * Clean up and enhance the event title
+ * @param {string} rawTitle - Original title
+ * @returns {string} Cleaned title
  */
 function cleanEventTitle(rawTitle) {
   if (!rawTitle || typeof rawTitle !== 'string') {
     return 'ISMIR 2025 Event';
   }
 
-  // 줄바꿈 문자를 공백으로 변환하고 여러 공백을 하나로 정리
+  // Replace line breaks with spaces and collapse multiple spaces
   let cleaned = rawTitle.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
   
-  // 이모지 제거 (선택사항)
+  // Remove emojis (optional)
   cleaned = cleaned.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '').trim();
   
-  // ISMIR 2025 접두사 추가 (이미 있지 않은 경우)
+  // Add the ISMIR 2025 prefix (if not already present)
   if (!cleaned.toLowerCase().includes('ismir')) {
     cleaned = `ISMIR 2025 - ${cleaned}`;
   }
@@ -721,12 +721,12 @@ function cleanEventTitle(rawTitle) {
 }
 
 /**
- * 이벤트 설명 생성
- * @param {string} eventTitle - 이벤트 제목
- * @param {string} location - 장소
+ * Generate the event description
+ * @param {string} eventTitle - Event title
+ * @param {string} location - Location
  * @param {string} googleMapUrl - Google Maps URL
- * @param {string} detailedLocation - 상세 장소 정보
- * @returns {string} 이벤트 설명
+ * @param {string} detailedLocation - Detailed location info
+ * @returns {string} Event description
  */
 function generateEventDescription(eventTitle, location, googleMapUrl, detailedLocation) {
   const description = [
@@ -734,7 +734,7 @@ function generateEventDescription(eventTitle, location, googleMapUrl, detailedLo
     ''
   ];
   
-  // 상세 장소 정보가 있으면 추가
+  // Append detailed location info if available
   if (detailedLocation) {
     description.push(`Venue Details: ${detailedLocation}`);
   }
@@ -756,25 +756,25 @@ function generateEventDescription(eventTitle, location, googleMapUrl, detailedLo
 }
 
 /**
- * Google Maps embed URL을 일반 사용자 URL로 변환
+ * Convert a Google Maps embed URL to a regular user-facing URL
  * @param {string} embedUrl - embed URL
- * @returns {string} 사용자가 클릭할 수 있는 URL
+ * @returns {string} URL the user can click
  */
 // eslint-disable-next-line no-unused-vars
 function convertEmbedToUserUrl(embedUrl) {
-  // 이미 일반 URL인 경우 그대로 반환
+  // Return as-is if it is already a regular URL
   if (!embedUrl.includes('/embed')) {
     return embedUrl;
   }
   
-  // embed URL에서 place ID 추출
+  // Extract the place ID from the embed URL
   const placeIdMatch = embedUrl.match(/!1s([^!]+)/);
   if (placeIdMatch) {
     const placeId = placeIdMatch[1];
     return `https://maps.google.com/?cid=${placeId}`;
   }
   
-  // place ID를 찾을 수 없는 경우 좌표 기반으로 변환
+  // Fall back to coordinates if no place ID is found
   const coordMatch = embedUrl.match(/!2d([^!]+)!3d([^!]+)/);
   if (coordMatch) {
     const lng = coordMatch[1];
@@ -782,14 +782,14 @@ function convertEmbedToUserUrl(embedUrl) {
     return `https://maps.google.com/?q=${lat},${lng}`;
   }
   
-  // 변환할 수 없는 경우 기본 KAIST 검색
+  // Default to a KAIST search if conversion is not possible
   return 'https://maps.google.com/?q=KAIST,+Daejeon,+South+Korea';
 }
 
 /**
- * 이벤트 타입에 따른 구체적인 장소 정보 가져오기
- * @param {string} eventTitle - 이벤트 제목
- * @param {number} columnIndex - 컬럼 인덱스
+ * Get specific location info based on the event type
+ * @param {string} eventTitle - Event title
+ * @param {number} columnIndex - Column index
  * @returns {Object} {location, googleMapUrl, detailedLocation}
  */
 function getEventSpecificVenue(eventTitle, columnIndex) {
@@ -840,7 +840,7 @@ function getEventSpecificVenue(eventTitle, columnIndex) {
   
   // Tutorial Sessions - E11 (9/21)
   if (normalizedTitle.includes('tutorial') && columnIndex === 2) {
-    // 시간대별 튜토리얼 세션 구분
+    // Distinguish tutorial sessions by time slot
     let sessionDetails = 'Tutorial Sessions @ E11';
     if (normalizedTitle.includes('t1') || normalizedTitle.includes('t2') || normalizedTitle.includes('t3')) {
       sessionDetails = 'Morning Tutorial Sessions (T1@101A, T2@102A, T3@103A) @ E11';
@@ -857,7 +857,7 @@ function getEventSpecificVenue(eventTitle, columnIndex) {
     };
   }
   
-  // Registration - 건물별 구분
+  // Registration - split by building
   if (normalizedTitle.includes('registration')) {
     if (columnIndex === 2) { // 9/21 Tutorial day
       return {
@@ -910,7 +910,7 @@ function getEventSpecificVenue(eventTitle, columnIndex) {
     };
   }
   
-  // 기본값: 컬럼 기반 매핑 사용
+  // Default: use the column-based mapping
   return {
     location: LOCATION_MAPPING[columnIndex],
     googleMapUrl: GOOGLE_MAPS_URLS[columnIndex],
@@ -919,30 +919,30 @@ function getEventSpecificVenue(eventTitle, columnIndex) {
 }
 
 /**
- * ICS 파일 내용 생성
- * @param {Object} eventData - 이벤트 데이터
- * @param {string} eventData.title - 이벤트 제목
- * @param {string} eventData.timeString - 시간 문자열 ("09:00 - 09:30")
- * @param {number} eventData.columnIndex - 컬럼 인덱스 (1-8)
- * @returns {string} ICS 파일 내용
+ * Generate ICS file content
+ * @param {Object} eventData - Event data
+ * @param {string} eventData.title - Event title
+ * @param {string} eventData.timeString - Time string ("09:00 - 09:30")
+ * @param {number} eventData.columnIndex - Column index (1-8)
+ * @returns {string} ICS file content
  */
 export function generateICSContent(eventData) {
   const { title, timeString, columnIndex } = eventData;
 
-  // 입력 검증
+  // Input validation
   if (!title || !timeString || !columnIndex) {
     throw new Error('Missing required event data');
   }
 
-  // 특별 이벤트 시간 확인 (실제 시간 범위 사용)
+  // Check for special event times (use the actual time range)
   const specialEventTime = getSpecialEventTime(title, columnIndex);
-  console.log('ICS 생성:', title, 'columnIndex:', columnIndex, 'timeString:', timeString, 'specialEventTime:', specialEventTime);
+  console.log('Generating ICS:', title, 'columnIndex:', columnIndex, 'timeString:', timeString, 'specialEventTime:', specialEventTime);
   
   let startDate, endDate, location, googleMapUrl, detailedLocation;
   
   if (specialEventTime) {
-    console.log('특별 이벤트 시간 사용:', specialEventTime.startTime, '-', specialEventTime.endTime);
-    // 특별 이벤트의 경우 실제 시간 사용
+    console.log('Using special event time:', specialEventTime.startTime, '-', specialEventTime.endTime);
+    // Use the actual time for special events
     const baseDate = DATE_MAPPING[specialEventTime.date];
     const { startHour, startMinute, endHour, endMinute } = parseTimeString(`${specialEventTime.startTime} - ${specialEventTime.endTime}`);
     
@@ -956,7 +956,7 @@ export function generateICSContent(eventData) {
     googleMapUrl = specialEventTime.googleMapUrl || GOOGLE_MAPS_URLS[columnIndex];
     detailedLocation = `${specialEventTime.startTime} - ${specialEventTime.endTime}`;
   } else {
-    // 일반 이벤트의 경우 기존 로직 사용
+    // Use the existing logic for regular events
   const dateStr = COLUMN_TO_DATE[columnIndex];
   const baseDate = DATE_MAPPING[dateStr];
 
@@ -964,33 +964,33 @@ export function generateICSContent(eventData) {
     throw new Error(`Invalid column index: ${columnIndex}`);
   }
 
-  // 시간 파싱
+  // Parse the time
   const { startHour, startMinute, endHour, endMinute } = parseTimeString(timeString);
 
-  // 시작/종료 시간 생성 (KST 기준)
+  // Build start/end times (in KST)
     startDate = new Date(baseDate);
   startDate.setHours(startHour, startMinute, 0, 0);
 
     endDate = new Date(baseDate);
   endDate.setHours(endHour, endMinute, 0, 0);
     
-    // 이벤트별 특별한 장소 정보 가져오기
+    // Get event-specific location info
     const venueInfo = getEventSpecificVenue(title, columnIndex);
     location = venueInfo.location;
     googleMapUrl = venueInfo.googleMapUrl;
     detailedLocation = venueInfo.detailedLocation;
   }
 
-  // ICS 형식으로 변환
+  // Convert to ICS format
   const dtStamp = formatICSDate(new Date());
 
-  // 이벤트 정보 정리
+  // Clean up event info
   const cleanTitle = cleanEventTitle(title);
   const description = generateEventDescription(title, location, googleMapUrl, detailedLocation);
   const dateStr = specialEventTime ? specialEventTime.date : COLUMN_TO_DATE[columnIndex];
   const uid = generateUID(title, dateStr, timeString);
 
-  // ICS 내용 생성
+  // Generate ICS content
   const icsContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -1025,15 +1025,15 @@ export function generateICSContent(eventData) {
 }
 
 /**
- * ICS 파일 다운로드
- * @param {Object} eventData - 이벤트 데이터
+ * Download the ICS file
+ * @param {Object} eventData - Event data
  */
 export function downloadICSFile(eventData) {
   try {
     const icsContent = generateICSContent(eventData);
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     
-    // 파일명 생성
+    // Build the filename
     const cleanTitle = cleanEventTitle(eventData.title)
       .replace(/[^a-zA-Z0-9\s-]/g, '')
       .replace(/\s+/g, '_')
@@ -1041,7 +1041,7 @@ export function downloadICSFile(eventData) {
     const dateStr = COLUMN_TO_DATE[eventData.columnIndex].replace('/', '-');
     const filename = `ismir2025_${cleanTitle}_${dateStr}.ics`;
 
-    // 다운로드 실행
+    // Trigger the download
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -1059,9 +1059,9 @@ export function downloadICSFile(eventData) {
 }
 
 /**
- * 이벤트 데이터 검증
- * @param {string} cellValue - 셀 값
- * @returns {boolean} 유효한 이벤트인지 여부
+ * Validate event data
+ * @param {string} cellValue - Cell value
+ * @returns {boolean} Whether this is a valid event
  */
 export function isValidEvent(cellValue) {
   if (!cellValue || typeof cellValue !== 'string') {
@@ -1070,7 +1070,7 @@ export function isValidEvent(cellValue) {
 
   const trimmed = cellValue.trim().toLowerCase();
   
-  // 빈 셀이나 "End" 마커는 이벤트가 아님
+  // Empty cells and "End" markers are not events
   if (!trimmed || trimmed === 'end') {
     return false;
   }
@@ -1079,22 +1079,22 @@ export function isValidEvent(cellValue) {
 }
 
 /**
- * Google Calendar URL 생성
- * @param {Object} eventData - 이벤트 데이터
+ * Generate a Google Calendar URL
+ * @param {Object} eventData - Event data
  * @returns {string} Google Calendar URL
  */
 export function generateGoogleCalendarUrl(eventData) {
   const { title, timeString, columnIndex } = eventData;
   
-  // 특별 이벤트 시간 확인 (실제 시간 범위 사용)
+  // Check for special event times (use the actual time range)
   const specialEventTime = getSpecialEventTime(title, columnIndex);
-  console.log('Google Calendar URL 생성:', title, 'columnIndex:', columnIndex, 'timeString:', timeString, 'specialEventTime:', specialEventTime);
+  console.log('Generating Google Calendar URL:', title, 'columnIndex:', columnIndex, 'timeString:', timeString, 'specialEventTime:', specialEventTime);
   
   let startDate, endDate, location;
   
   if (specialEventTime) {
-    console.log('특별 이벤트 시간 사용 (Google Calendar):', specialEventTime.startTime, '-', specialEventTime.endTime);
-    // 특별 이벤트의 경우 실제 시간 사용
+    console.log('Using special event time (Google Calendar):', specialEventTime.startTime, '-', specialEventTime.endTime);
+    // Use the actual time for special events
     const baseDate = DATE_MAPPING[specialEventTime.date];
     const { startHour, startMinute, endHour, endMinute } = parseTimeString(`${specialEventTime.startTime} - ${specialEventTime.endTime}`);
     
@@ -1106,7 +1106,7 @@ export function generateGoogleCalendarUrl(eventData) {
     
     location = specialEventTime.location;
   } else {
-    // 일반 이벤트의 경우 기존 로직 사용
+    // Use the existing logic for regular events
   const dateStr = COLUMN_TO_DATE[columnIndex];
   const baseDate = DATE_MAPPING[dateStr];
   const { startHour, startMinute, endHour, endMinute } = parseTimeString(timeString);
@@ -1117,17 +1117,17 @@ export function generateGoogleCalendarUrl(eventData) {
     endDate = new Date(baseDate);
   endDate.setHours(endHour, endMinute, 0, 0);
     
-    // 장소 정보
+    // Location info
     const venueInfo = getEventSpecificVenue(title, columnIndex);
     location = venueInfo.location;
   }
   
-  // Google Calendar 형식으로 변환 (YYYYMMDDTHHMMSSZ)
+  // Convert to Google Calendar format (YYYYMMDDTHHMMSSZ)
   const formatGoogleDate = (date) => {
     return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
   };
   
-  // URL 파라미터 생성
+  // Build URL parameters
   const params = new URLSearchParams({
     action: 'TEMPLATE',
     text: cleanEventTitle(title),
@@ -1141,22 +1141,22 @@ export function generateGoogleCalendarUrl(eventData) {
 }
 
 /**
- * Outlook Web URL 생성
- * @param {Object} eventData - 이벤트 데이터
+ * Generate an Outlook Web URL
+ * @param {Object} eventData - Event data
  * @returns {string} Outlook Web URL
  */
 export function generateOutlookUrl(eventData) {
   const { title, timeString, columnIndex } = eventData;
   
-  // 특별 이벤트 시간 확인 (실제 시간 범위 사용)
+  // Check for special event times (use the actual time range)
   const specialEventTime = getSpecialEventTime(title, columnIndex);
-  console.log('Outlook URL 생성:', title, 'columnIndex:', columnIndex, 'timeString:', timeString, 'specialEventTime:', specialEventTime);
+  console.log('Generating Outlook URL:', title, 'columnIndex:', columnIndex, 'timeString:', timeString, 'specialEventTime:', specialEventTime);
   
   let startDate, endDate, location;
   
   if (specialEventTime) {
-    console.log('특별 이벤트 시간 사용 (Outlook):', specialEventTime.startTime, '-', specialEventTime.endTime);
-    // 특별 이벤트의 경우 실제 시간 사용
+    console.log('Using special event time (Outlook):', specialEventTime.startTime, '-', specialEventTime.endTime);
+    // Use the actual time for special events
     const baseDate = DATE_MAPPING[specialEventTime.date];
     const { startHour, startMinute, endHour, endMinute } = parseTimeString(`${specialEventTime.startTime} - ${specialEventTime.endTime}`);
     
@@ -1168,7 +1168,7 @@ export function generateOutlookUrl(eventData) {
     
     location = specialEventTime.location;
   } else {
-    // 일반 이벤트의 경우 기존 로직 사용
+    // Use the existing logic for regular events
   const dateStr = COLUMN_TO_DATE[columnIndex];
   const baseDate = DATE_MAPPING[dateStr];
   const { startHour, startMinute, endHour, endMinute } = parseTimeString(timeString);
@@ -1179,12 +1179,12 @@ export function generateOutlookUrl(eventData) {
     endDate = new Date(baseDate);
   endDate.setHours(endHour, endMinute, 0, 0);
   
-  // 장소 정보
+  // Location info
   const venueInfo = getEventSpecificVenue(title, columnIndex);
     location = venueInfo.location;
   }
   
-  // URL 파라미터 생성
+  // Build URL parameters
   const params = new URLSearchParams({
     subject: cleanEventTitle(title),
     startdt: startDate.toISOString(),
@@ -1197,20 +1197,20 @@ export function generateOutlookUrl(eventData) {
 }
 
 /**
- * Apple Calendar URL 생성 (iOS Safari에서 작동)
- * @param {Object} eventData - 이벤트 데이터
+ * Generate an Apple Calendar URL (works in iOS Safari)
+ * @param {Object} eventData - Event data
  * @returns {string} Apple Calendar URL
  */
 export function generateAppleCalendarUrl(eventData) {
-  // Apple Calendar는 ICS 파일을 data URL로 제공하는 방식 사용
+  // Apple Calendar is served the ICS file as a data URL
   const icsContent = generateICSContent(eventData);
   const dataUrl = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsContent)}`;
   return dataUrl;
 }
 
 /**
- * 캘린더 옵션 목록 생성
- * @returns {Array} 사용 가능한 캘린더 옵션들
+ * Build the list of calendar options
+ * @returns {Array} Available calendar options
  */
 export function getAvailableCalendarOptions() {
   const userAgent = navigator.userAgent;
@@ -1233,7 +1233,7 @@ export function getAvailableCalendarOptions() {
     }
   ];
   
-  // iOS 사용자에게만 Apple Calendar 옵션 제공
+  // Offer the Apple Calendar option to iOS users only
   if (/iPhone|iPad|iPod/.test(userAgent)) {
     options.push({
       id: 'apple',
@@ -1245,10 +1245,10 @@ export function getAvailableCalendarOptions() {
     });
   }
   
-  // 항상 ICS 다운로드 옵션 제공 (호환성 보장)
+  // Always offer the ICS download option (guaranteed compatibility)
   options.push({
     id: 'download',
-    name: 'ICS 다운로드',
+    name: 'Download ICS',
     icon: '⬇️',
     color: '#6c757d',
     supported: true,
@@ -1259,9 +1259,9 @@ export function getAvailableCalendarOptions() {
 }
 
 /**
- * 여러 이벤트를 하나의 ICS 파일로 병합
- * @param {Array} eventDataArray - 이벤트 데이터 배열
- * @returns {string} 병합된 ICS 파일 내용
+ * Merge multiple events into a single ICS file
+ * @param {Array} eventDataArray - Array of event data
+ * @returns {string} Merged ICS file content
  */
 export function generateMergedICSContent(eventDataArray) {
   if (!eventDataArray || eventDataArray.length === 0) {
@@ -1270,7 +1270,7 @@ export function generateMergedICSContent(eventDataArray) {
 
   const dtStamp = formatICSDate(new Date());
   
-  // ICS 헤더
+  // ICS header
   const icsHeader = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -1290,20 +1290,20 @@ export function generateMergedICSContent(eventDataArray) {
     'END:VTIMEZONE'
   ];
 
-  // 모든 이벤트 처리
+  // Process all events
   const events = [];
   
   eventDataArray.forEach((eventData, index) => {
     try {
       const { title, timeString, columnIndex } = eventData;
 
-      // 특별 이벤트 시간 확인
+      // Check for special event times
       const specialEventTime = getSpecialEventTime(title, columnIndex);
       
       let startDate, endDate, location, googleMapUrl, detailedLocation;
       
       if (specialEventTime) {
-        // 특별 이벤트의 경우 실제 시간 사용
+        // Use the actual time for special events
         const baseDate = DATE_MAPPING[specialEventTime.date];
         const { startHour, startMinute, endHour, endMinute } = parseTimeString(`${specialEventTime.startTime} - ${specialEventTime.endTime}`);
         
@@ -1317,7 +1317,7 @@ export function generateMergedICSContent(eventDataArray) {
         googleMapUrl = specialEventTime.googleMapUrl || GOOGLE_MAPS_URLS[columnIndex];
         detailedLocation = `${specialEventTime.startTime} - ${specialEventTime.endTime}`;
       } else {
-        // 일반 이벤트의 경우 기존 로직 사용
+        // Use the existing logic for regular events
         const dateStr = COLUMN_TO_DATE[columnIndex];
         const baseDate = DATE_MAPPING[dateStr];
         const { startHour, startMinute, endHour, endMinute } = parseTimeString(timeString);
@@ -1328,20 +1328,20 @@ export function generateMergedICSContent(eventDataArray) {
         endDate = new Date(baseDate);
         endDate.setHours(endHour, endMinute, 0, 0);
         
-        // 이벤트별 특별한 장소 정보 가져오기
+        // Get event-specific location info
         const venueInfo = getEventSpecificVenue(title, columnIndex);
         location = venueInfo.location;
         googleMapUrl = venueInfo.googleMapUrl;
         detailedLocation = venueInfo.detailedLocation;
       }
 
-      // 이벤트 정보 정리
+      // Clean up event info
       const cleanTitle = cleanEventTitle(title);
       const description = generateEventDescription(title, location, googleMapUrl, detailedLocation);
       const dateStr = specialEventTime ? specialEventTime.date : COLUMN_TO_DATE[columnIndex];
-      const uid = generateUID(title, dateStr, timeString) + `-${index}`; // 인덱스 추가로 고유성 보장
+      const uid = generateUID(title, dateStr, timeString) + `-${index}`; // Append the index to guarantee uniqueness
 
-      // 개별 이벤트 생성
+      // Create the individual event
       const eventLines = [
         'BEGIN:VEVENT',
         `UID:${uid}`,
@@ -1360,30 +1360,30 @@ export function generateMergedICSContent(eventDataArray) {
       events.push(...eventLines);
     } catch (error) {
       console.warn(`Failed to process event: ${eventData.title}`, error);
-      // 실패한 이벤트는 건너뛰고 계속 진행
+      // Skip failed events and continue
     }
   });
 
-  // ICS 푸터
+  // ICS footer
   const icsFooter = ['END:VCALENDAR'];
 
-  // 모든 부분 결합
+  // Join all parts
   const fullICS = [...icsHeader, ...events, ...icsFooter];
   
   return fullICS.join('\r\n');
 }
 
 /**
- * 병합된 ICS 파일 다운로드
- * @param {Array} eventDataArray - 이벤트 데이터 배열
- * @param {string} filename - 파일명 (선택사항)
+ * Download the merged ICS file
+ * @param {Array} eventDataArray - Array of event data
+ * @param {string} filename - Filename (optional)
  */
 export function downloadMergedICSFile(eventDataArray, filename = 'ismir2025_complete_schedule.ics') {
   try {
     const icsContent = generateMergedICSContent(eventDataArray);
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     
-    // 다운로드 실행
+    // Trigger the download
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;

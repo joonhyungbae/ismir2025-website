@@ -4,13 +4,13 @@
       <v-card outlined elevation="0" class="pa-4 my-4">
         <v-card-text class="text-body mt-5">
           <v-container class="table-container" fluid>
-            <!-- 헤더 행 -->
+            <!-- Header row -->
             <v-row class="table-row styled-row table-header">
               <v-col cols="6">Paper Title</v-col>
               <v-col cols="6">Authors</v-col>
             </v-row>
 
-            <!-- 실제 데이터 행들 -->
+            <!-- Data rows -->
             <v-row
               v-for="(paper, index) in papers"
               :key="index"
@@ -39,19 +39,19 @@ export default {
   },
   methods: {
     formatAuthors(authorsString) {
-      // 저자 문자열에서 소속 정보를 유지하고 저자(소속) 형태로 표시
+      // Keep affiliation info in the author string and display it as author (affiliation)
       return authorsString
         .split(";")
         .map((author) => {
-          // *표시만 제거하고 괄호 안의 소속 정보는 유지
+          // Remove only the * marker; keep the affiliation in parentheses
           let cleaned = author.replace(/\*/g, "").trim();
 
-          // 여러 공백을 하나로 정리
+          // Collapse multiple spaces into one
           cleaned = cleaned.replace(/\s+/g, " ").trim();
 
           return cleaned;
         })
-        .filter((author) => author.length > 0) // 빈 문자열 제거
+        .filter((author) => author.length > 0) // Drop empty strings
         .join(", ");
     },
   },
