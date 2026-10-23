@@ -33,4 +33,23 @@ No API keys or environment variables are needed.
 
 The source code is released under the [MIT License](LICENSE). Photographs, logos (including sponsor logos), and documents in `src/assets/` and `public/` belong to their respective owners and are not covered by the license. Replace them when you reuse the code.
 
-If you reuse this code, please cite it (see [CITATION.cff](CITATION.cff)).
+## Citation
+
+If you reuse this code, please cite it. Plain text:
+
+> Bae, J. (2025). *ISMIR 2025 Conference Website* (Version 1.0.0) [Computer software]. https://github.com/joonhyungbae/ismir2025-website
+
+BibTeX:
+
+```bibtex
+@software{bae2025ismirwebsite,
+  author  = {Bae, Joonhyung},
+  title   = {{ISMIR} 2025 Conference Website},
+  version = {1.0.0},
+  year    = {2025},
+  url     = {https://github.com/joonhyungbae/ismir2025-website},
+  note    = {MIT License. Site: https://ismir2025.ismir.net}
+}
+```
+
+The same information is in [CITATION.cff](CITATION.cff), which also powers the "Cite this repository" button on the GitHub page.
