@@ -4,13 +4,15 @@ How to make the changes a conference website needs during the year. Paths are re
 
 ## Add a page
 
-A new page touches five places. Missing one of them is the most common mistake.
+A new page is usually registered in five places. Missing one is the most common mistake.
 
 1. **Section** — create `src/components/section/SectionMyPage.vue` with the content. Copy an existing page of the same kind (for a new call, start from `SectionCallForPaper.vue`) so the layout stays consistent.
 2. **View** — create `src/views/MyPage.vue` with `SectionMenuCover` and your section (see [Architecture](ARCHITECTURE.md#how-a-page-is-put-together)).
-3. **Route** — in `src/router/index.js`, import the view and add `{ path: '/my-page', name: 'my-page', component: MyPage }`. Keep the path prefix of its menu group (`/call-for-*`, `/program-*`, `/attend-*`, `/about-*`, `/satellite-*`, `/diversity-*`).
-4. **Banner** — in `src/components/section/SectionMenuCover.vue`, add an entry to `titleList` with the path (without the leading slash), title, cover image, and parent menu name. Without it the page has no title or breadcrumb.
-5. **Menu** — in `src/components/AppbarPage.vue`, add the label to the right `*SubItems` array and a `case` for it in the matching `handleSubItemClick*` function. The mobile drawer reuses the same arrays, so the item appears there too. Only a new top-level group needs to be added to the drawer separately.
+3. **Route** — in `src/router/index.js`, import the view and add `{ path: '/my-page', name: 'my-page', component: MyPage }`. Keep the path prefix of its menu group (`/call-for-*`, `/program-*`, `/attend-*`, `/about-*`, `/satellite-*`, `/diversity-*`); the author-information and sponsor pages, and `/program` itself, are the exceptions.
+4. **Banner** — in `src/components/section/SectionMenuCover.vue`, add an entry to `titleList` with the path (without the leading slash), title, and parent menu name. Without it the page has no title or breadcrumb. The `src` field is unused; all banners show the image imported at the top of that file.
+5. **Menu** — in `src/components/AppbarPage.vue`, add the label to the right `*SubItems` array and a `case` for it in the matching `handleSubItemClick*` function. The `case` label must use the route's `name`, which is not always the path (for example `/attend-visa-entry-guide` has the name `attend-visa-guide`). The mobile drawer reuses the same arrays, so the item appears there too. Only a new top-level group needs to be added to the drawer separately. A page can also exist without a menu item, as `/attend-transportation` does.
+
+If you rename a route, search `src` for the old path. Links are written as literal strings, and the router has no catch-all route, so a stale link shows an empty page.
 
 Then run `npm run serve`, open the page from the menu on a wide window and from the drawer on a narrow one, and check the banner.
 
@@ -57,7 +59,7 @@ While the schedule is still changing daily it can be convenient to read it live 
 
 1. Add the logo image to `src/assets/logo/` (and a WebP copy in `src/assets/logo/fhd/` if you follow the existing pattern).
 2. Add an object to `src/data/sponsors.js` with `id`, `tiers`, `name`, `tagline`, `logo` (the image base name), `website`, and `description` (an array of paragraphs).
-3. The home page lists sponsors separately, in the sponsors part of `SectionHomeAboutDates.vue`. Update it as well.
+3. The home page lists sponsors separately, in the sponsors part of `SectionHomeAboutDates.vue`, and shows host and supporter logos from `src/assets/sponserLogos/` (the folder name is misspelled in the code). Update it as well.
 4. Check `/meet-the-sponsors` and the home page.
 
 ## Link a document
@@ -66,4 +68,4 @@ Put the file in `public/` and link to it with an absolute path, for example `hre
 
 ## Images
 
-Most images exist in two versions: the original and a resized WebP copy in an `fhd/` subfolder, which the pages use. Keep originals outside the repository if they are large, and decide the image sizes and format at the start of the year.
+Many images exist in two versions, the original and a resized WebP copy in an `fhd/` subfolder. About a third of the image references use the `fhd/` copy; committee, volunteer, and transportation photos and the home-page logos use the originals, and `SponsorCard.vue` falls back to the original when no WebP copy exists. Decide the image sizes and format at the start of the year, and keep large originals outside the repository.

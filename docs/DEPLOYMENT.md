@@ -27,7 +27,7 @@ Start this early. The domain was requested in October 2024, about 11 months befo
 GitHub Pages has no server-side routing. A visitor who opens `https://<domain>/program` directly would get a 404. Two small files handle it:
 
 - `public/404.html` redirects any unknown path to `/?p=<path>`;
-- a script in `public/index.html` reads `p` and restores the path with `history.replaceState` before Vue Router starts.
+- a script in `public/index.html` reads `p` and restores the path with `history.replaceState` before Vue Router starts. Only the path is carried over; a query string or hash on the original link is lost.
 
 Keep both files if you change the hosting setup.
 
@@ -39,6 +39,6 @@ The preview step is easy to drop in the final weeks, when changes are most frequ
 
 ## Before every public deployment
 
-- `npm run lint` and `npm run build` pass.
+- `npm run lint -- --no-fix` and `npm run build` pass.
 - No keys, tokens, or private files are in the commit (`.env*` files are ignored by `.gitignore`).
 - Files in `public/` are meant to be public: they are served exactly as they are.

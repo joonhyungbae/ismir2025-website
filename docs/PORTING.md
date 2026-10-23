@@ -26,7 +26,7 @@ grep -rlE '2025|Daejeon|KAIST|Korea' src --include='*.vue' --include='*.js'
 
 - [ ] `public/index.html`: page title, favicon reference
 - [ ] `public/favicon.png`
-- [ ] Logo and cover images in `src/assets/` (`logo.png`, `ExtendedLogo.png`, `CoverImages/`, `k1.webp` used by the page banner)
+- [ ] Logo and cover images in `src/assets/` (`logo.png`, `ExtendedLogo.png`, `CoverImages/`, `CoverImages/fhd/k1.webp`, imported by `SectionMenuCover.vue` as the banner of every page)
 - [ ] Fonts in `src/styles/variables.scss` and the Google Fonts link in `public/index.html`; colors are set in the components themselves (search for the hex codes you want to change)
 - [ ] `public/CNAME`: your domain
 
@@ -40,7 +40,7 @@ grep -rlE '2025|Daejeon|KAIST|Korea' src --include='*.vue' --include='*.js'
 
 - [ ] Home page text and important dates: `SectionHomeAboutDates.vue`; remove the 2025 awards section
 - [ ] Calls: `SectionCallForPaper.vue` and the other `SectionCallFor*.vue` files
-- [ ] Organizing committee and volunteers: `SectionOrganizingCommittee.vue`, `SectionAboutVolunteers.vue`, photos in `src/assets/Chairs/` and `src/assets/Volunteers/`
+- [ ] Organizing committee and volunteers: `SectionAboutOrganizingCommittee.vue`, `SectionAboutVolunteers.vue`, photos in `src/assets/Chairs/` and `src/assets/Volunteers/`
 - [ ] Venue, campus map, accommodation, transportation, visa: the `SectionVenue`, `SectionCampusMapPage`, `SectionAccommodation`, `SectionAirportToDaejeon`, `SectionAttendLocalTransportation`, and `SectionVisaEntryGuide` components and their images; these are specific to the host city and usually rewritten from scratch
 - [ ] Footer: `FooterPage.vue` and the policy PDFs it links in `public/`
 - [ ] Contact addresses (search for `@ismir.net` and `@gmail.com`)
@@ -50,12 +50,13 @@ grep -rlE '2025|Daejeon|KAIST|Korea' src --include='*.vue' --include='*.js'
 - [ ] `public/AcceptedPapersWithAffiliationsFixed.json`: empty it until acceptance
 - [ ] Program: `hardcodedProgramData` and `VENUE_LEGEND` in `SectionProgramPage.vue`
 - [ ] Calendar export: date, location, and map tables in `src/services/icsService.js`
-- [ ] Sponsors: `src/data/sponsors.js`, `src/assets/logo/`, and the sponsors part of `SectionHomeAboutDates.vue`
+- [ ] Sponsors: `src/data/sponsors.js`, `src/assets/logo/`, the sponsors part of `SectionHomeAboutDates.vue`, and the host logos in `src/assets/sponserLogos/`
 - [ ] Documents in `public/` (program PDF, travel guide, policies)
 
 ### Before publishing
 
-- [ ] `npm run lint` and `npm run build` pass
+- [ ] `npm run lint -- --no-fix` and `npm run build` pass (without `--no-fix`, lint rewrites files)
+- [ ] Search `src` for links to any route you renamed; links are literal strings
 - [ ] Open every menu item at desktop width and in the mobile drawer
 - [ ] Check the menu at 1,280, 1,366, and 1,440 pixels wide for line wrapping
 - [ ] Search the code for the previous year's dates and names one last time

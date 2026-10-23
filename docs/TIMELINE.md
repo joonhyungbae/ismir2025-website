@@ -8,7 +8,7 @@ ISMIR 2025 milestones: paper deadline March 28, 2025; acceptance notifications J
 
 | Period | Pages that appeared |
 |---|---|
-| Oct to Nov 2024 | Home, organizing committee, call for papers, call for tutorials, call for late-breaking demos, venue, tutorials, accepted papers |
+| Oct to Nov 2024 | Home, organizing committee, call for papers, call for tutorials, call for late-breaking demos, venue, tutorials, and an accepted-papers page that stayed empty until July |
 | Jan to Feb 2025 | Mentoring, author guidelines |
 | Apr 2025 | Registration, satellite events (HCMIR, DLfM), sponsorship opportunities, call for music |
 | Jun 2025 | Accommodation, financial support, satellite event (LLM4MA), code of conduct, call for volunteers |
