@@ -33,7 +33,7 @@ Top-level desktop menu, left to right, after Home:
 
 Menus for the program and for attending existed in the code from November 2024 but were kept hidden (commented out) until there was content behind them. The attendance menu appeared on June 3, just before notifications, and absorbed registration. The program menu appeared on June 7 and moved to first place on June 12.
 
-The menu never changed again after September 18. A year later the virtual platform link still sits right after the program.
+The menu never changed again after September 18. A year later it still opens with the program and the virtual platform, where the recorded talks live, followed by the items of the earlier phases.
 
 ## How much time it took
 
