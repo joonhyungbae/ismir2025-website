@@ -255,13 +255,7 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      pdfUrl: `${process.env.BASE_URL}sponsorship_details.pdf`,
-    };
-  },
-};
+export default {};
 </script>
 
 <style scoped>
